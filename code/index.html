@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧠 Source Code Viewer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #111111 0%, #000000 80%);
+      font-family: 'VT323', monospace;
+      color: #bfa94e; /* softer gold */
+      margin: 0;
+    }
+    h1 {
+      text-shadow: 0 0 3px #bfa94e88;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    ul {
+      background: rgba(30, 30, 30, 0.6);
+      border: 1.5px solid #bfa94eaa;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      box-shadow: inset 0 0 5px #bfa94e44;
+      margin-bottom: 1.5rem;
+      list-style: none;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    ul li {
+      margin: 0.6rem 0;
+    }
+    ul li a {
+      display: block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      color: #bfa94e;
+      font-size: 1.05rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      text-decoration: none;
+    }
+    ul li a:hover {
+      background-color: #4a462b33;
+      color: #d4c96b;
+      box-shadow: none;
+      transform: none;
+    }
+    p {
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-family: 'Inter', sans-serif;
+      max-width: 400px;
+      margin: 0 auto 1.5rem auto;
+      text-align: center;
+    }
+    a.back-link {
+      color: #bfa94e;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+      display: block;
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    a.back-link:hover {
+      color: #d4c96b;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-start pt-12 p-6">
+
+  <div class="text-center w-full max-w-md mx-auto">
+    <h1>💾 View Source Code Files</h1>
+
+    <ul>
+      <li><a href="dog-demo.html">dog-demo.html</a></li>
+      <li><a href="style-js.html">style.js</a></li>
+      <li><a href="color-css.html">color.css</a></li>
+    </ul>
+
+    <p>Click a file to view its source code in the browser.</p>
+
+    <a href="/" class="back-link">← Back to Portfolio</a>
+  </div>
+
+</body>
+</html>
