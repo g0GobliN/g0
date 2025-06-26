@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📜 style.js Source Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    pre {
+      background-color: #1f2937; /* gray-800 */
+      color: #facc15; /* amber-400 */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex flex-col items-center px-4 pt-12 text-yellow-400">
+  <h2 class="text-2xl font-semibold mb-6">📜 style.js Source Code</h2>
+
+  <section class="max-w-2xl w-full">
+    <pre><code>
+let btn = document.querySelector("button");
+let url = "https://dog.ceo/api/breeds/image/random";
+let dogImage = document.getElementById("dog-image");
+let imageContainer = document.getElementById("image-container");
+
+btn.addEventListener('click', async () => {
+    // Reset the image container opacity
+    imageContainer.style.opacity = 0;
+
+    // Fetch a new image
+    let link = await getImage();
+    dogImage.setAttribute("src", link);
+
+    // Trigger the fade-in animation
+    setTimeout(() => {
+        imageContainer.style.opacity = 1;
+    }, 10); // Small delay to ensure the animation triggers
+});
+
+async function getImage() {
+    try {
+        let res = await axios.get(url);
+        return res.data.message;
+    } catch (error) {
+        console.log("Error -", error);
+        return "No Image Found";
+    }
+}
+    </code></pre>
+  </section>
+
+  <footer class="mt-8 text-sm">
+    <a href="index.html" class="underline hover:text-yellow-300">← Back to Code List</a>
+  </footer>
+</body>
+</html>
