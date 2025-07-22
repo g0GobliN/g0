@@ -22,6 +22,7 @@ const SkillsGrid = () => {
             </span>
             <span className="text-sm text-gray-500 dark:text-gray-400">
               {skill.category}
+              
             </span>
           </div>
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -88,7 +89,7 @@ const AboutSection = () => {
 
             <TextReveal delay={100}>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                Currently studying in Japan, I've immersed myself in a culture that values precision, craftsmanship, and continuous improvement. This experience has profoundly shaped my approach to development.
+                Hi, I'm Vishal Gurung. Currently studying in Japan, I've immersed myself in a culture that values precision, craftsmanship, and continuous improvement. This experience has profoundly shaped my approach to development.
               </p>
             </TextReveal>
 

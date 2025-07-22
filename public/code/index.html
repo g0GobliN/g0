@@ -78,15 +78,24 @@
     <h1>💾 View Source Code Files</h1>
 
     <ul>
-      <li><a href="/public/code/dog-demo.html">dog-demo.html</a></li>
-      <li><a href="/public/code/style.js">style.js</a></li>
-      <li><a href="/public/code/color.css">color.css</a></li>
+      <li><a href="dog-demo.html">dog-demo.html</a></li>
+      <li><a href="style-js.html">style.js</a></li>
+      <li><a href="color-css.html">color.css</a></li>
     </ul>
 
     <p>Click a file to view its source code in the browser.</p>
 
-    <a href="/" class="back-link">← Back to Portfolio</a>
+    <a id="back-link" class="back-link">← Back to Portfolio</a>
   </div>
+
+<script>
+     const backLink = document.getElementById('back-link');
+
+    // Set back link href depending on environment
+    // If on GitHub Pages (hostname includes github.io), use '/g0/', else use '/'
+    const basePath = window.location.hostname.includes('github.io') ? '/g0/' : '/';
+    backLink.href = basePath;
+</script>
 
 </body>
 </html>
