@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import AnimatedThemeToggle from "./AnimatedThemeToggle";
+import goblinLogo from "/assets/images/goblin.webp";
 
 const Navigation = ({
   activeSection,
@@ -9,7 +10,7 @@ const Navigation = ({
   onThemeToggle,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+ 
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
@@ -28,7 +29,7 @@ const Navigation = ({
             <div className="w-10 h-10 relative">
               <a href="#home">
                 <img
-                  src="public/assets/images/goblin.webp"
+                  src={goblinLogo}
                   alt="Logo"
                   className="w-full h-full object-contain scale-[1.2] transition-transform duration-300 hover:scale-125"
                 />
