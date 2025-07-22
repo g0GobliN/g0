@@ -26,5 +26,4 @@ dist-ssr
 # Ignore file
 /src/EnhancedGoblinPortfolio.jsx
 /src/sections/Idea
-/code
-/assets/Vishal_Gurung_Portfolio_Resume.pdf
+/public/code
