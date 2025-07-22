@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextReveal from "../components/TextReveal";
+import BackgroundGrid from "../components/BackgroundGrid";
 import { Typewriter } from "react-simple-typewriter";
-// import * as Tone from "tone";
 
 const HomeSection = ({ scrollY, onSectionChange }) => {
   scrollY = scrollY || 0;
@@ -10,10 +10,26 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const scenes = [
-    { title: "Once upon a time...", subtitle: "there was a developer", visual: "terminal" },
-    { title: "Who loved to create", subtitle: "digital experiences", visual: "code" },
-    { title: "Bridging worlds", subtitle: "of technology & humanity", visual: "bridge" },
-    { title: "Meet Vishal", subtitle: "Your creative developer", visual: "profile" },
+    {
+      title: "Once upon a time...",
+      subtitle: "there was a developer",
+      visual: "terminal",
+    },
+    {
+      title: "Who loved to create",
+      subtitle: "digital experiences",
+      visual: "code",
+    },
+    {
+      title: "Bridging worlds",
+      subtitle: "of technology & humanity",
+      visual: "bridge",
+    },
+    {
+      title: "Meet Vishal",
+      subtitle: "Your creative developer",
+      visual: "profile",
+    },
   ];
 
   useEffect(() => {
@@ -34,14 +50,6 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-//   useEffect(() => {
-//     const synth = new Tone.Synth().toDestination();
-//     Tone.start().then(() => {
-//       synth.volume.value = -27; // Set volume 
-//       synth.triggerAttackRelease("C5", "8n");
-//     });
-//   }, [currentScene]);
-
   const TerminalVisual = () => (
     <div className="w-80 h-48 bg-gray-900 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm shadow-2xl">
       <div className="flex gap-2 mb-3">
@@ -52,7 +60,9 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
       <div className="text-green-400">
         <div className="animate-pulse">┌──(goblin01@g0)-[~/]</div>
         <div className="animate-pulse delay-500">└─$ whoami</div>
-        <div className="animate-pulse delay-1000 text-white">creative_developer</div>
+        <div className="animate-pulse delay-1000 text-white">
+          creative_developer
+        </div>
         <div className="animate-pulse delay-1500">└─$ ls dreams/</div>
         <div className="animate-pulse delay-2000 text-blue-400">
           innovation.js creativity.css passion.html
@@ -74,14 +84,18 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
               animationDelay: `${Math.random() * 3}s`,
             }}
           >
-            {["<div>", "function()", "{ }", "const", "return", "&&", "||"][
-              Math.floor(Math.random() * 7)
-            ]}
+            {
+              ["<div>", "function()", "{ }", "const", "return", "&&", "||"][
+                Math.floor(Math.random() * 7)
+              ]
+            }
           </div>
         ))}
       </div>
       <div className="relative z-10">
-        <div className="text-pink-400 animate-pulse">const magic = () =&gt; &#123;</div>
+        <div className="text-pink-400 animate-pulse">
+          const magic = () =&gt; &#123;
+        </div>
         <div className="text-blue-400 animate-pulse delay-300 ml-4">
           return dreams + code;
         </div>
@@ -96,7 +110,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
         <defs>
           <linearGradient id="bridgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#3b82f6" />
-            <stop offset="100scene%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="#8b5cf6" />
           </linearGradient>
         </defs>
         <path
@@ -110,7 +124,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           <line
             key={i}
             x1={40 + i * 30}
-            y1={140 - Math.sin((i * 30) / 240 * Math.PI) * 80}
+            y1={140 - Math.sin(((i * 30) / 240) * Math.PI) * 80}
             x2={40 + i * 30}
             y2={140}
             stroke="url(#bridgeGradient)"
@@ -144,7 +158,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           style={{
             width: `${60 + i * 20}px`,
             height: `${60 + i * 20}px`,
-            animationDelay: `${i * 0.5}s`,
+            animationDelay: `${i * 3.0}s`,
             animationDuration: "3s",
           }}
         />
@@ -153,7 +167,9 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
         <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 animate-pulse backdrop-blur-sm flex items-center justify-center text-2xl font-bold">
           VG
         </div>
-        <div className="text-sm font-medium animate-pulse">Ready to create magic</div>
+        <div className="text-sm font-medium animate-pulse">
+          Ready to create magic
+        </div>
       </div>
     </div>
   );
@@ -188,25 +204,14 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-all duration-1000"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px) translateX(${mousePos.x * 10}px)`,
-        }}
-      >
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
-          <svg width="100%" height="100%">
-            <defs>
-              <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-      </div>
+      {/* Replaced manual grid and particles with BackgroundGrid */}
+      <BackgroundGrid
+        scrollY={scrollY}
+        mousePos={mousePos}
+        getParticleColors={getParticleColors}
+      />
 
-      <div className="relativescene z-10 w-full max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full max-w-6xl mx-auto px-6 pt-8 grid lg:grid-cols-2 gap-12 items-center relativescene z-10">
         <div className="text-center lg:text-left order-2 lg:order-1">
           <div className="mb-6">
             <TextReveal key={currentScene} className="mb-2">
@@ -232,7 +237,9 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
                 key={i}
                 onClick={() => setCurrentScene(i)}
                 className={`cursor-pointer h-1 rounded-full transition-all duration-500 ${
-                  i === currentScene ? "w-8 bg-blue-500" : "w-2 bg-gray-300 dark:bg-gray-600"
+                  i === currentScene
+                    ? "w-8 bg-blue-500"
+                    : "w-2 bg-gray-300 dark:bg-gray-600"
                 }`}
               />
             ))}
@@ -240,7 +247,11 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
 
           <TextReveal
             delay={400}
-            className={`transition-opacity duration-500 ${currentScene === 3 ? "opacity-100" : "opacity-0"}`}
+            className={`transition-opacity duration-500 ${
+              currentScene === 3
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
@@ -263,32 +274,18 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           <div
             className="transform transition-all duration-1000 hover:scale-105"
             style={{
-              transform: `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${mousePos.y * -5}deg)`,
+              transform: `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${
+                mousePos.y * -5
+              }deg)`,
             }}
           >
             {renderVisual()}
           </div>
         </div>
       </div>
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute opacity-20 animate-float"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + Math.sin(i) * 30}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${4 + i * 0.5}s`,
-            }}
-          >
-            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${getParticleColors(i % 3)}`} />
-          </div>
-        ))}
-      </div>
     </section>
   );
 };
 
 export default HomeSection;
+  

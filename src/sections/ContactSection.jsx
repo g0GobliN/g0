@@ -1,26 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextReveal from "../components/TextReveal";
 import ContactForm from "../components/ContactForm";
+import BackgroundGrid from "../components/BackgroundGrid";  // <-- import added
 
 const ContactSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onMouseMove = (e) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      });
+    };
+    window.addEventListener("mousemove", onMouseMove);
+    return () => window.removeEventListener("mousemove", onMouseMove);
+  }, []);
+
+  const loopHeight = 600;
+  const scrollYLooped = scrollY % loopHeight;
+
+  const getParticleColors = (index) => {
+    const colorSets = [
+      "from-green-400 to-blue-400",
+      "from-purple-400 to-pink-400",
+      "from-yellow-400 to-red-400",
+      "from-blue-400 to-purple-400",
+    ];
+    return colorSets[index % colorSets.length];
+  };
+
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="contact" className="py-20 px-6 relative overflow-hidden">
+      {/* Background grid as a background */}
+      <BackgroundGrid
+        scrollY={scrollYLooped}
+        mousePos={mousePos}
+        getParticleColors={getParticleColors}
+      />
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <TextReveal>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
             Let's Work Together
           </h2>
         </TextReveal>
-        
+
         <TextReveal delay={100}>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-            I'm always excited to collaborate on innovative projects and 
+            I'm always excited to collaborate on innovative projects and
             explore new opportunities. Let's create something amazing together.
           </p>
         </TextReveal>
-        
+
         <ContactForm />
-        
+
         <TextReveal delay={200}>
           <div className="flex flex-wrap gap-4 justify-center items-center mt-5">
             <a
