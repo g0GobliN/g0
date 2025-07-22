@@ -8,7 +8,7 @@ const SkillsGrid = () => {
     { name: "React/TailwindCSS", level: 85, category: "Technical" },
     { name: "JavaScript", level: 88, category: "Technical" },
     { name: "UI/UX Design", level: 75, category: "Design" },
-    { name: "Node.js", level: 80, category: "Technical" },
+    { name: "Java", level: 80, category: "Technical" },
     { name: "Git & Version Control", level: 85, category: "Technical" },
   ];
 
