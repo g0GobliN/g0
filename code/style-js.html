@@ -24,34 +24,32 @@
 
   <section class="max-w-2xl w-full">
     <pre><code>
-let btn = document.querySelector("button");
-let url = "https://dog.ceo/api/breeds/image/random";
-let dogImage = document.getElementById("dog-image");
-let imageContainer = document.getElementById("image-container");
+const dogBtn = document.getElementById('dog-btn');
+    const dogImg = document.getElementById('dog-image');
+    const imageContainer = document.getElementById('image-container');
+    const backLink = document.getElementById('back-link');
 
-btn.addEventListener('click', async () => {
-    // Reset the image container opacity
-    imageContainer.style.opacity = 0;
+    // Set back link href depending on environment
+    // If on GitHub Pages (hostname includes github.io), use '/g0/', else use '/'
+    const basePath = window.location.hostname.includes('github.io') ? '/g0/' : '/';
+    backLink.href = basePath;
 
-    // Fetch a new image
-    let link = await getImage();
-    dogImage.setAttribute("src", link);
+    dogBtn.addEventListener('click', async () => {
+      dogBtn.disabled = true;
+      dogBtn.textContent = 'Loading...';
 
-    // Trigger the fade-in animation
-    setTimeout(() => {
-        imageContainer.style.opacity = 1;
-    }, 10); // Small delay to ensure the animation triggers
-});
-
-async function getImage() {
-    try {
-        let res = await axios.get(url);
-        return res.data.message;
-    } catch (error) {
-        console.log("Error -", error);
-        return "No Image Found";
-    }
-}
+      try {
+        const res = await fetch('https://dog.ceo/api/breeds/image/random');
+        const data = await res.json();
+        dogImg.src = data.message;
+        imageContainer.style.display = 'block';
+      } catch (err) {
+        alert('Failed to fetch dog image 😢');
+      } finally {
+        dogBtn.textContent = 'Show Me a Dog';
+        dogBtn.disabled = false;
+      }
+    });
     </code></pre>
   </section>
 

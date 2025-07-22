@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,12 +116,15 @@
   <div class="center-wrapper">
     <h1>🦴 Goblin Dog Generator</h1>
     <button id="dog-btn">Show Me a Dog</button>
+    <!-- <a href="public/code/index.html">
+      <button id="show-code">Show Code</button></a> -->
 
     <div id="image-container">
       <img id="dog-image" src="" alt="Random Dog Image" />
     </div>
 
-    <a href="/index.html" class="back-link">← Back to Portfolio</a>
+    <!-- Back link without href, will set href dynamically -->
+    <a id="back-link" class="back-link">← Back to Portfolio</a>
 
     <footer>by g0</footer>
   </div>
@@ -129,6 +133,12 @@
     const dogBtn = document.getElementById('dog-btn');
     const dogImg = document.getElementById('dog-image');
     const imageContainer = document.getElementById('image-container');
+    const backLink = document.getElementById('back-link');
+
+    // Set back link href depending on environment
+    // If on GitHub Pages (hostname includes github.io), use '/g0/', else use '/'
+    const basePath = window.location.hostname.includes('github.io') ? '/g0/' : '/';
+    backLink.href = basePath;
 
     dogBtn.addEventListener('click', async () => {
       dogBtn.disabled = true;
@@ -148,4 +158,5 @@
     });
   </script>
 </body>
+
 </html>
