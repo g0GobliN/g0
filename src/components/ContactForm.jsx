@@ -1,35 +1,54 @@
 import React, { useState } from "react";
 import TextReveal from "./TextReveal";
+import { PaperAirplaneIcon } from "@heroicons/react/24/solid"; // or outline if you prefer lighter style
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/grgvishal.gurung17@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success === "true") {
+        setSubmitStatus("✅ Thank you! Your message has been sent.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("❌ Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitStatus(
+        "❌ Error sending message. Please check your connection."
+      );
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('Thank you for your message! I\'ll get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitStatus(''), 5000);
-    }, 1000);
+      setTimeout(() => setSubmitStatus(""), 5000);
+    }
   };
 
   return (
@@ -39,21 +58,19 @@ const ContactForm = () => {
           <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white text-center">
             Send me a message
           </h3>
-          
+
           {submitStatus && (
-            <div className="mb-6 p-4 bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-lg text-green-800 dark:text-green-200 text-center">
+            <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded-lg text-green-800 dark:text-green-200 text-center transition-all duration-300">
               {submitStatus}
             </div>
           )}
-          
-          <form 
-            action="https://formsubmit.co/grgvishal.gurung17@gmail.com"
-            method="POST"
-            className="space-y-6"
-            onSubmit={handleSubmit}
-          >
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
                 Name
               </label>
               <input
@@ -67,9 +84,12 @@ const ContactForm = () => {
                 placeholder="Your name"
               />
             </div>
-            
+
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
                 Email
               </label>
               <input
@@ -83,9 +103,12 @@ const ContactForm = () => {
                 placeholder="your.email@example.com"
               />
             </div>
-            
+
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
                 Message
               </label>
               <textarea
@@ -99,13 +122,29 @@ const ContactForm = () => {
                 placeholder="Tell me about your project or just say hello..."
               />
             </div>
-            
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full interactive px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out
+              ${
+                isSubmitting
+                  ? "bg-gray-400 dark:bg-gray-600 text-white animate-pulse cursor-wait"
+                  : "bg-gradient-to-r from-zinc-500 to-neutral-400 text-white dark:from-white dark:to-gray-300 dark:text-black hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-md"
+              }
+              disabled:opacity-50 disabled:cursor-not-allowed
+            `}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? (
+                <>
+                  Sending...
+                  <PaperAirplaneIcon className="w-5 h-5 animate-spin" />
+                </>
+              ) : (
+                <>
+                  Commit Message
+                  <PaperAirplaneIcon className="w-5 h-5" />
+                </>
+              )}
             </button>
           </form>
         </div>

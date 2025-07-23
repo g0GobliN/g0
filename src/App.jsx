@@ -88,8 +88,7 @@ export default function ModernPortfolio() {
       />
       
       <HomeSection scrollY={scrollY} onSectionChange={handleSectionChange} />
-      <AboutSection />
-      <WorkSection />
+      <AboutSection />      <WorkSection />
       <ContactSection />
       <Footer />
     </div>
