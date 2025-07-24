@@ -88,7 +88,7 @@ const ContactSection = () => {
             </a>
             
             <a
-              href={`${import.meta.env.BASE_URL}/assets/Vishal_Gurung_Portfolio_Resume.pdf`}
+              href="/assets/Vishal_Gurung_Portfolio_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="interactive flex items-center gap-3 px-6 py-3 border-2 border-black dark:border-white text-black dark:text-white rounded-full font-medium hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all"
