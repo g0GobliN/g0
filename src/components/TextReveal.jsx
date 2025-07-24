@@ -22,7 +22,7 @@ const TextReveal = ({ children, className = "", delay = 0 }) => {
   }, [delay]);
   
   return (
-    <div ref={elementRef} className={`overflow-hidden ${className}`}>
+    <div ref={elementRef} className={`overflow-visible ${className}`}>
       <div
         className={`transition-transform duration-700 ease-out ${
           isVisible ? 'translate-y-0' : 'translate-y-full'

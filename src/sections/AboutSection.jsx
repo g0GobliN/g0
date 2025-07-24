@@ -1,41 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextReveal from "../components/TextReveal";
-import BackgroundGrid from "../components/BackgroundGrid"
-
-const SkillsGrid = () => {
-  const skills = [
-    { name: "Frontend Development", level: 90, category: "Technical" },
-    { name: "React/TailwindCSS", level: 85, category: "Technical" },
-    { name: "JavaScript", level: 88, category: "Technical" },
-    { name: "UI/UX Design", level: 75, category: "Design" },
-    { name: "Java", level: 80, category: "Technical" },
-    { name: "Git & Version Control", level: 85, category: "Technical" },
-  ];
-
-  return (
-    <div className="grid md:grid-cols-2 gap-6">
-      {skills.map((skill) => (
-        <div key={skill.name} className="group">
-          <div className="flex justify-between items-center mb-2">
-            <span className="font-medium text-gray-900 dark:text-white">
-              {skill.name}
-            </span>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {skill.category}
-              
-            </span>
-          </div>
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-black dark:bg-white transition-all duration-1000 delay-200"
-              style={{ width: `${skill.level}%` }}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+import BackgroundGrid from "../components/BackgroundGrid";
+import SkillsGrid from "../components/SkillsGrid";
 
 const AboutSection = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -59,7 +25,7 @@ const AboutSection = () => {
   }, []);
 
   const loopHeight = 600;
-  const scrollYLooped = scrollY % loopHeight; // <-- loop scrollY here
+  const scrollYLooped = scrollY % loopHeight;
 
   const getParticleColors = (index) => {
     const colorSets = [
@@ -79,7 +45,8 @@ const AboutSection = () => {
         getParticleColors={getParticleColors}
       />
       <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Text Content */}
           <div>
             <TextReveal>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -100,7 +67,7 @@ const AboutSection = () => {
             </TextReveal>
 
             <TextReveal delay={300}>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6 mb-8">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-black dark:text-white">2+</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">Projects</div>
@@ -117,17 +84,57 @@ const AboutSection = () => {
             </TextReveal>
           </div>
 
-          <div className="space-y-8">
-            <TextReveal delay={400}>
-              <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
-                Skills & Expertise
-              </h3>
-            </TextReveal>
+{/* Right Column - Photo */}
+<div className="relative overflow-visible">
+  <TextReveal delay={400}>
+    <div className="relative">
+      {/* About me label */}
+  
+      {/* Photo Container with vertical text overlay */}
+      <div className="relative rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-[4/5] max-w-sm">
+        {/* Actual Photo */}
+        <img
+          src="/assets/images/IMG_4027.jpg"
+          alt="Vishal Gurung"
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
 
-            <TextReveal delay={500}>
-              <SkillsGrid />
-            </TextReveal>
+        {/* Optional: Hover Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Vertical Text attached to right edge */}
+        <div 
+          className="absolute inset-y-0 right-0 "
+          style={{ transform: 'translate(40%, 31%) scale(1.3)' }}
+        >
+          <div 
+            className="text-5xl md:text-5xl lg:text-6xl font-bold text-white"
+            style={{ 
+              rotate: '270deg',
+            }}
+          >
+            プロフィール
           </div>
+        </div>
+      </div>
+    </div>
+  </TextReveal>
+  
+</div>
+
+        </div>
+
+        {/* Skills Section - Moved below for better layout */}
+        <div className="mt-20">
+          <TextReveal delay={500}>
+            <h3 className="text-2xl font-semibold mb-8 text-gray-900 dark:text-white text-center">
+              Skills & Expertise
+            </h3>
+          </TextReveal>
+
+          <TextReveal delay={600}>
+            <SkillsGrid />
+          </TextReveal>
         </div>
       </div>
     </section>
