@@ -73,7 +73,7 @@ const Footer = () => {
                   ? "bg-green-100 dark:bg-green-900/30 cursor-default"
                   : "bg-gray-100 dark:bg-gray-800 hover:bg-green-50 dark:hover:bg-green-900/20 hover:scale-105 cursor-pointer"
               }`}
-              title={hasLiked ? "Code compiled! 🎉" : "Compile some love"}
+              title={hasLiked ? "Code compiled!" : "Compile some love!"}
             >
               <div className="relative">
                 {/* Smaller Curly Braces */}
@@ -122,8 +122,9 @@ const Footer = () => {
               </span>
             </button>
           </div>
-{/* 
-          <button
+             
+          {/* Reset Like Button for test*/}
+          {/* <button
             onClick={() => {
               localStorage.removeItem("user-has-liked");
               setHasLiked(false);
