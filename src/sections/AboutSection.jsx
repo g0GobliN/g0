@@ -38,7 +38,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-20 px-6 overflow-hidden min-h-screen">
+    <section id="about" className="relative py-20 px-6 overflow-visible min-h-screen">
       <BackgroundGrid
         scrollY={scrollYLooped}
         mousePos={mousePos}
@@ -103,9 +103,9 @@ const AboutSection = () => {
           className="absolute inset-y-0 right-0 "
           style={{ transform: 'translate(40%, 31%) scale(1.3)' }}
         >
-          <div 
-            className="text-5xl md:text-5xl lg:text-6xl font-bold text-white"
-            style={{ 
+          <div
+            className="text-5xl md:text-5xl lg:text-6xl font-bold text-[#f1f1b9]"
+            style={{
               rotate: '270deg',
             }}
           >
