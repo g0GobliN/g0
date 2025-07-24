@@ -76,7 +76,7 @@ export default function ModernPortfolio() {
   };
   
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
+    <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
       isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'
     }`}>
       <CursorFollower />
@@ -88,7 +88,8 @@ export default function ModernPortfolio() {
       />
       
       <HomeSection scrollY={scrollY} onSectionChange={handleSectionChange} />
-      <AboutSection />      <WorkSection />
+      <AboutSection />     
+      <WorkSection />
       <ContactSection />
       <Footer />
     </div>
