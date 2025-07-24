@@ -38,7 +38,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-20 px-6 overflow-visible min-h-screen">
+    <section id="about" className="relative py-20 px-6 overflow-hidden min-h-screen">
       <BackgroundGrid
         scrollY={scrollYLooped}
         mousePos={mousePos}
@@ -90,18 +90,19 @@ const AboutSection = () => {
     <div className="relative">
   
       {/* Photo Container with vertical text overlay */}
-      <div className="relative rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-[4/5] max-w-sm">
+      <div className="relative rounded-2xl  aspect-[4/5] max-w-sm">
         <img
           src="/assets/images/IMG_4027.jpg"
           alt="Vishal Gurung"
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          style={{ transform: 'translateY(12px)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
         {/* Vertical Text attached to right edge */}
         <div 
           className="absolute inset-y-0 right-0 "
-          style={{ transform: 'translate(40%, 31%) scale(1.3)' }}
+          style={{ transform: 'translate(40%, 38%) scale(1.28)' }}
         >
           <div
             className="text-5xl md:text-5xl lg:text-6xl font-bold text-[#f1f1b9]"
