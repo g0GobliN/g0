@@ -88,18 +88,14 @@ const AboutSection = () => {
 <div className="relative overflow-visible">
   <TextReveal delay={400}>
     <div className="relative">
-      {/* About me label */}
   
       {/* Photo Container with vertical text overlay */}
       <div className="relative rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-[4/5] max-w-sm">
-        {/* Actual Photo */}
         <img
           src="/assets/images/IMG_4027.jpg"
           alt="Vishal Gurung"
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
-
-        {/* Optional: Hover Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
         {/* Vertical Text attached to right edge */}
