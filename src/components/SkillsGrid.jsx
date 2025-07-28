@@ -2,30 +2,80 @@ import React from "react";
 
 const SkillsGrid = () => {
   const skills = [
-    { name: "Frontend Development", level: 90, category: "Technical" },
-    { name: "React/TailwindCSS", level: 85, category: "Technical" },
-    { name: "JavaScript", level: 88, category: "Technical" },
-    { name: "UI/UX Design", level: 75, category: "Design" },
-    { name: "Java", level: 80, category: "Technical" },
-    { name: "Git & Version Control", level: 85, category: "Technical" }
+    {
+      name: "React",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "JavaScript",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "TypeScript",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    },
+    {
+      name: "Node.js",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    {
+      name: "Java",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    },
+    {
+      name: "Next.js",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+,
+    },
+    {
+      name: "Git",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    },
   ];
-  
+
+  // Duplicate skills for seamless infinite scroll
+  const duplicatedSkills = [...skills, ...skills];
+
   return (
-    <div className="grid md:grid-cols-2 gap-6">
-      {skills.map((skill) => (
-        <div key={skill.name} className="group">
-          <div className="flex justify-between items-center mb-2">
-            <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
-            <span className="text-sm text-gray-500 dark:text-gray-400">{skill.category}</span>
-          </div>
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-black dark:bg-white transition-all duration-1000 delay-200"
-              style={{ width: `${skill.level}%` }}
+    <div className="relative overflow-hidden py-8">
+      <div
+        className="flex animate-scroll space-x-8"
+        style={{ width: `${duplicatedSkills.length * 160}px` }}
+      >
+        {duplicatedSkills.map((skill, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center w-32"
+          >
+            <img
+              src={skill.icon}
+              alt={skill.name}
+              className="w-16 h-16 object-contain mb-2"
             />
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {skill.name}
+            </p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };

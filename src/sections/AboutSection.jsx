@@ -99,7 +99,7 @@ const AboutSection = () => {
           getParticleColors={getParticleColors}
         />
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid xs:grid-cols-2 gap-8 mid:gap-12 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
             <div>
               <TextReveal>
@@ -156,11 +156,11 @@ const AboutSection = () => {
             </div>
 
             {/* Right Column - Photo */}
-            <div className="relative overflow-visible">
+            <div className="relative overflow-visible flex justify-center xs:justify-center">
               <TextReveal delay={400}>
                 <div className="relative">
                   {/* Photo Container with vertical text overlay */}
-                  <div className="relative rounded-2xl aspect-[4/5] max-w-sm">
+                  <div className="relative rounded-2xl  aspect-[4/5] max-w-sm">
                     <img
                       src="/assets/images/IMG_4027.jpeg"
                       alt="Vishal Gurung"
@@ -180,12 +180,13 @@ const AboutSection = () => {
                     {/* Vertical Text attached to right edge */}
                     <div
                       className="absolute inset-y-0 right-0 pointer-events-none"
-                      style={{ transform: "translate(40%, 32%) scale(1.2)" }}
+                      style={{ transform: "translate(38%, 32%) scale(1.2)" }}
                     >
                       <div
-                        className="text-5xl md:text-6xl lg:text-6xl font-bold text-[#f1f1b9]"
+                        className="text-5xl md:text-5xl lg:text-6xl font-bold text-[#f1f1b9] whitespace-nowrap"
                         style={{
                           rotate: "270deg",
+                          
                         }}
                       >
                         プロフィール

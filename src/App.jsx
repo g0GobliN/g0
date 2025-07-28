@@ -16,6 +16,11 @@ export default function ModernPortfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(false);
   
+  // Scroll to top on initial load / refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme');
