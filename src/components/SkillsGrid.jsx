@@ -37,7 +37,7 @@ const SkillsGrid = () => {
         ))}
       </div>
 
-      <style jsx>{`
+      <style jsx ={true}>{`
         @keyframes scroll {
           0% {
             transform: translateX(0);

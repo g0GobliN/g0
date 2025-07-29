@@ -150,6 +150,7 @@ const Navigation = ({
         activeSection={activeSection}
         isDark={isDark}
         onThemeToggle={onThemeToggle}
+        onSectionClick={handleSectionClick}
       />
 
       {/* Fixed bottom-right theme toggle on mobile */}

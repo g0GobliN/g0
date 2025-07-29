@@ -2,11 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AnimatedThemeToggle from "./AnimatedThemeToggle";
 
-const MobileMenu = ({ isOpen, onClose, activeSection, isDark, onThemeToggle }) => {
+const MobileMenu = ({
+  isOpen,
+  onClose,
+  activeSection,
+  isDark,
+  onThemeToggle,
+  onSectionClick,
+}) => {
   const navItems = [
-    { id: "home", label: "Home", path: "/" },
-    { id: "about", label: "About", path: "/about" },
-    { id: "work", label: "Work", path: "/work" },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "work", label: "Work" },
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 
@@ -16,7 +23,10 @@ const MobileMenu = ({ isOpen, onClose, activeSection, isDark, onThemeToggle }) =
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
+      <div
+        className="absolute inset-0 bg-black bg-opacity-50"
+        onClick={onClose}
+      ></div>
       <div className="absolute right-0 top-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl flex flex-col justify-between">
         <div className="p-6 relative">
           <button
@@ -39,20 +49,37 @@ const MobileMenu = ({ isOpen, onClose, activeSection, isDark, onThemeToggle }) =
           </button>
 
           <div className="mt-12 space-y-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.path}
-                onClick={onClose}
-                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors ${
-                  activeSection === item.id
-                    ? "bg-black text-white dark:bg-gray-700 dark:text-white"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.path && item.id === "contact" ? ( // Contact stays as Link
+                <Link
+                  key={item.id}
+                  to={item.path}
+                  onClick={onClose}
+                  className={`block w-full text-left py-3 px-4 rounded-lg transition-colors ${
+                    activeSection === item.id
+                      ? "bg-black text-white dark:bg-gray-700 dark:text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onClose();
+                    onSectionClick(item.id);
+                  }}
+                  className={`block w-full text-left py-3 px-4 rounded-lg transition-colors ${
+                    activeSection === item.id
+                      ? "bg-black text-white dark:bg-gray-700 dark:text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              )
+            )}
           </div>
         </div>
 
