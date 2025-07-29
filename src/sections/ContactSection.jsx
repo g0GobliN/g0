@@ -61,7 +61,7 @@ const ContactSection = () => {
 
         <ContactForm />
 
-        <TextReveal delay={200}>
+        {/* <TextReveal delay={200}>
           <div className="flex flex-wrap gap-4 justify-center items-center mt-5">
             <a
               href="https://github.com/g0GobliN"
@@ -103,7 +103,7 @@ const ContactSection = () => {
               Resume
             </a>
           </div>
-        </TextReveal>
+        </TextReveal> */}
       </div>
     </section>
   );

@@ -255,7 +255,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
-                className="interactive px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                className="interactive px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300"
                 onClick={() => onSectionChange("work")}
               >
                 Explore My Work

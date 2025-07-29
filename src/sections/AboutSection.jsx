@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import TextReveal from "../components/TextReveal";
 import BackgroundGrid from "../components/BackgroundGrid";
 import SkillsGrid from "../components/SkillsGrid";
+import DecryptedText from "../components/DecryptedText";
+import { Link } from "react-router-dom";
 
-const AboutSection = () => {
+const AboutSection = ({ onOpenContact }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,31 +30,31 @@ const AboutSection = () => {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
-    
+
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isModalOpen]);
 
   // Handle escape key to close modal
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (e.key === "Escape" && isModalOpen) {
         setIsModalOpen(false);
       }
     };
 
     if (isModalOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [isModalOpen]);
 
@@ -87,6 +89,17 @@ const AboutSection = () => {
     }
   };
 
+  // Function to scroll to contact section
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <>
       <section
@@ -103,7 +116,8 @@ const AboutSection = () => {
             {/* Left Column - Text Content */}
             <div>
               <TextReveal>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white
+                ">
                   About Me
                 </h2>
               </TextReveal>
@@ -119,10 +133,33 @@ const AboutSection = () => {
 
               <TextReveal delay={200}>
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  I believe in creating technology that doesn't just function, but
-                  inspires. Every project is an opportunity to blend technical
-                  excellence with thoughtful design.
+                  I believe in creating technology that doesn't just function,
+                  but inspires. Every project is an opportunity to blend
+                  technical excellence with thoughtful design.
                 </p>
+              </TextReveal>
+
+              {/* Message Button */}
+              <TextReveal delay={250}>
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 text-black dark:text-customCyan  hover:underline decoration-2 underline-offset-4 transition-all duration-300 mb-8"
+                >
+                  <svg
+                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                  </svg>
+                  Send me a message
+                </Link>
               </TextReveal>
 
               <TextReveal delay={300}>
@@ -170,7 +207,7 @@ const AboutSection = () => {
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
+                        if (e.key === "Enter" || e.key === " ") {
                           handleImageClick(e);
                         }
                       }}
@@ -182,15 +219,20 @@ const AboutSection = () => {
                       className="absolute inset-y-0 right-0 pointer-events-none"
                       style={{ transform: "translate(38%, 32%) scale(1.2)" }}
                     >
-                      <div
-                        className="text-5xl md:text-5xl lg:text-6xl font-bold text-[#f1f1b9] whitespace-nowrap"
+                      <DecryptedText
+                        text="プロフィール"
+                        className="text-5xl md:text-5xl lg:text-6xl font-bold text-[#f1f1b9] dark:text-white whitespace-nowrap"
+                        encryptedClassName="text-5xl md:text-5xl lg:text-6xl font-bold text-[#ffffff] whitespace-nowrap"
+                        animateOn="view" // triggers animation when in viewport
+                        sequential={true} // reveal chars one by one
+                        speed={500} // speed of scramble (adjust as you want)
+                        revealDirection="start"
+                        characters="アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ"
                         style={{
-                          rotate: "270deg",
-                          
+                          transform: "rotate(270deg)",
+                          fontFamily: "'Yu Gothic', 'Noto Sans JP', sans-serif",
                         }}
-                      >
-                        プロフィール
-                      </div>
+                      />
                     </div>
                   </div>
                 </div>
@@ -229,18 +271,18 @@ const AboutSection = () => {
               id="modal-title"
               className="rounded-lg shadow-lg block"
               style={{
-                maxWidth: '90vw',
-                maxHeight: '90vh',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain',
-                imageRendering: '-webkit-optimize-contrast',
-                backfaceVisibility: 'hidden',
-                transform: 'translateZ(0)'
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                width: "auto",
+                height: "auto",
+                objectFit: "contain",
+                imageRendering: "-webkit-optimize-contrast",
+                backfaceVisibility: "hidden",
+                transform: "translateZ(0)",
               }}
               onClick={(e) => e.stopPropagation()}
             />
-            
+
             {/* Simple close button */}
             <button
               onClick={handleModalClose}

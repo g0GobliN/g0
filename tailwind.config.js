@@ -17,6 +17,10 @@ module.exports = {
         xs: "670px",
         mid: "844px",
       },
+      colors: {
+        customCyan: "#00eaf9",
+        customDarkCyan: "#6da8ad",
+      },
     },
   },
   plugins: [],

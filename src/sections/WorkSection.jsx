@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TextReveal from "../components/TextReveal";
 import ProjectCard from "../components/ProjectCard";
-import BackgroundGrid from "../components/BackgroundGrid";  // <-- import added
+import BackgroundGrid from "../components/BackgroundGrid";
 
 const WorkSection = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -40,55 +39,47 @@ const WorkSection = () => {
   const projects = [
     {
       title: "Random Dog Generator",
-      description:
-        "A delightful web application that brings joy through random dog images. Built with modern JavaScript and integrated with the Dog CEO API for seamless data fetching.",
+      description: "A delightful web application that brings joy through random dog images.",
+      longDescription: "Built with modern JavaScript and integrated with the Dog CEO API...",
       tags: ["JavaScript", "API", "CSS", "HTML"],
-      icon: "🐕",
+      year: "2024",
+      role: "Frontend Development",
       url: `${import.meta.env.BASE_URL}dog-demo.html`,
+      modelUrl: "/model/dog.glb",
     },
     {
       title: "Interactive Portfolio",
-      description:
-        "A sophisticated personal portfolio showcasing modern web development techniques. Features smooth animations, responsive design, and interactive elements.",
-      tags: ["React", "Tailwind", "JavaScript"],
-      icon: "💼",
+      description: "A sophisticated personal portfolio showcasing modern web development techniques.",
+      longDescription: "Features smooth animations, responsive design, and interactive elements...",
+      tags: ["React", "Tailwind", "JavaScript", "CSS"],
+      year: "2025",
+      role: "Full Stack Development",
       url: "https://github.com/g0GobliN/g0",
+      modelUrl: "/model/treasure.glb",
     },
   ];
 
   return (
-    <section
-      id="work"
-      className="py-20 px-6 bg-white-50 dark:bg-gray-900 relative overflow-hidden"
-    >
-      {/* Background grid */}
+    <section id="work" className="relative min-h-screen">
       <BackgroundGrid
         scrollY={scrollYLooped}
         mousePos={mousePos}
         getParticleColors={getParticleColors}
       />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <TextReveal>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Selected Work
-            </h2>
-          </TextReveal>
-
-          <TextReveal delay={100}>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              A curated collection of projects that showcase my journey as a
-              developer and designer.
-            </p>
-          </TextReveal>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
+        <div className="max-w-2xl mb-24 mx">
+          <h1 className="text-5xl md:text-6xl font-medium text-zinc-900 dark:text-zinc-100 mb-6 leading-tight">
+            Selected Work
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            A collection of projects that showcase my approach to solving problems 
+            through thoughtful design and clean code.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="space-y-32">
           {projects.map((project, index) => (
-            <TextReveal key={project.title} delay={index * 100}>
-              <ProjectCard project={project} index={index} />
-            </TextReveal>
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>

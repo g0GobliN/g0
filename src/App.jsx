@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // Import components
 import CursorFollower from "./components/CursorFollower";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Import sections
 import HomeSection from "./sections/HomeSection";
@@ -11,11 +13,35 @@ import AboutSection from "./sections/AboutSection";
 import WorkSection from "./sections/WorkSection";
 import ContactSection from "./sections/ContactSection";
 
+function MainPage({ scrollY }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    const section = location.pathname.replace("/", ""); 
+    if (section) {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
+  return (
+    <>
+      <HomeSection scrollY={scrollY} id="home" />
+      <AboutSection id="about" />
+      <WorkSection id="work" />
+    </>
+  );
+}
+
 export default function ModernPortfolio() {
   const [scrollY, setScrollY] = useState(0);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
-  
+
   // Scroll to top on initial load / refresh
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,34 +49,36 @@ export default function ModernPortfolio() {
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
+      setIsDarkMode(savedTheme === "dark");
     } else {
       // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       setIsDarkMode(prefersDark);
     }
   }, []);
-  
+
   useEffect(() => {
     // Update HTML class and localStorage when theme changes
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      
+
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'work', 'contact'];
-      const currentSection = sections.find(section => {
+      const sections = ["home", "about", "work", "contact"];
+      const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -58,44 +86,50 @@ export default function ModernPortfolio() {
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   const handleSectionChange = (sectionId) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
-  
+
   return (
-    <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
-      isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'
-    }`}>
+    <div
+      className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
+        isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-900"
+      }`}
+    >
       <CursorFollower />
       <Navigation 
-        activeSection={activeSection} 
-        onSectionChange={handleSectionChange}
-        isDark={isDarkMode}
-        onThemeToggle={toggleTheme}
+      isDark={isDarkMode} 
+      onSectionChange={handleSectionChange}
+      onThemeToggle={toggleTheme} 
+      activeSection={activeSection}
       />
-      
-      <HomeSection scrollY={scrollY} onSectionChange={handleSectionChange} />
-      <AboutSection />     
-      <WorkSection />
-      <ContactSection />
+
+      <ScrollToTop />
+
+      <Routes>
+  <Route path="/" element={<MainPage scrollY={scrollY} />} />
+  <Route path="/contact" element={<ContactSection />} />
+</Routes>
+
+
       <Footer />
     </div>
   );
