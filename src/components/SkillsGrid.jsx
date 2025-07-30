@@ -30,7 +30,7 @@ const SkillsGrid = () => {
               alt={skill.name}
               className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain mb-2"
             />
-            <p className="text-xs sm:text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 text-center">
+            <p className="text-xs sm:text-sm md:text-base font-gotham-book text-gray-700 dark:text-gray-300 text-center">
               {skill.name}
             </p>
           </div>

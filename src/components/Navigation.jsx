@@ -17,7 +17,7 @@ const Navigation = ({
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "work", label: "Work" },
+    { id: "project", label: "Project" },
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 
@@ -86,9 +86,9 @@ const Navigation = ({
                   <Link
                     key={item.id}
                     to={item.path}
-                    className={`interactive text-sm font-medium transition-colors ${
+                    className={`interactive text-sm font-gotham-book transition-colors ${
                       activeSection === item.id
-                        ? "text-black dark:text-white"
+                        ? "text-black dark:text-white crossed-text"
                         : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -101,7 +101,7 @@ const Navigation = ({
                     onClick={() => handleSectionClick(item.id)}
                     className={`interactive text-sm font-medium transition-colors ${
                       activeSection === item.id
-                        ? "text-black dark:text-white"
+                        ? "text-black dark:text-white crossed-text"
                         : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                     }`}
                   >

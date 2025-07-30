@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TextReveal from "../components/TextReveal";
-import BackgroundGrid from "../components/BackgroundGrid";
 import { Typewriter } from "react-simple-typewriter";
 
 const HomeSection = ({ scrollY, onSectionChange }) => {
@@ -72,7 +71,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   );
 
   const CodeVisual = () => (
-    <div className="w-80 h-48 bg-gradient-to-br from-purple-900 to-blue-900 rounded-lg p-4 text-white relative overflow-hidden">
+    <div className="w-80 h-48 bg-gray-900 dark:bg-gray-800 rounded-lg p-4 text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-20">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -149,7 +148,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   );
 
   const ProfileVisual = () => (
-    <div className="relative w-80 h-48 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center overflow-hidden">
+    <div className="relative w-80 h-48 bg-gray-800 dark:bg-gray-800 rounded-2xl flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
       {Array.from({ length: 6 }).map((_, i) => (
         <div
@@ -164,10 +163,10 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
         />
       ))}
       <div className="relative z-10 text-center text-white">
-        <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 animate-pulse backdrop-blur-sm flex items-center justify-center text-2xl font-bold">
+        <div className="w-20 h-20 bg-cyan-400/20 font-gotham-medium rounded-full mx-auto mb-4 animate-pulse backdrop-blur-sm flex items-center justify-center text-2xl font-bold">
           VG
         </div>
-        <div className="text-sm font-medium animate-pulse">
+        <div className="text-sm font-medium animate-pulse font-gotham-book">
           Ready to create magic
         </div>
       </div>
@@ -202,20 +201,19 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300
+                 bg-gray-50 text-gray-900 
+                 dark:bg-black dark:text-white"
     >
-      {/* Replaced manual grid and particles with BackgroundGrid */}
-      <BackgroundGrid
-        scrollY={scrollY}
-        mousePos={mousePos}
-        getParticleColors={getParticleColors}
-      />
-
-      <div className="w-full max-w-6xl mx-auto px-6 pt-8 grid lg:grid-cols-2 gap-12 items-center relativescene z-10">
+      <div className="w-full max-w-6xl mx-auto px-6 pt-8 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        
+        {/* LEFT: Text */}
         <div className="text-center lg:text-left order-2 lg:order-1">
           <div className="mb-6">
+            
+            {/* Title */}
             <TextReveal key={currentScene} className="mb-2">
-              <h1 className="text-3xl md:text-5xl font-light text-gray-800 dark:text-gray-200 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-gotham-book leading-tight text-gray-800 dark:text-white">
                 {currentScene === 0 ? (
                   <Typewriter words={[scenes[0].title]} typeSpeed={50} />
                 ) : (
@@ -224,13 +222,15 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
               </h1>
             </TextReveal>
 
+            {/* Subtitle */}
             <TextReveal key={`${currentScene}-sub`} delay={200} className="mb-8">
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light">
+              <p className="text-xl md:text-2xl font-gotham-book text-gray-600 dark:text-gray-400">
                 {scenes[currentScene]?.subtitle}
               </p>
             </TextReveal>
           </div>
 
+          {/* Scene Indicators */}
           <div className="flex justify-center lg:justify-start gap-2 mb-8">
             {scenes.map((_, i) => (
               <div
@@ -238,13 +238,14 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
                 onClick={() => setCurrentScene(i)}
                 className={`cursor-pointer h-1 rounded-full transition-all duration-500 ${
                   i === currentScene
-                    ? "w-8 bg-blue-500"
-                    : "w-2 bg-gray-300 dark:bg-gray-600"
+                    ? "w-8 bg-cyan-400"
+                    : "w-2 bg-gray-400 dark:bg-gray-600"
                 }`}
               />
             ))}
           </div>
 
+          {/* Buttons */}
           <TextReveal
             delay={400}
             className={`transition-opacity duration-500 ${
@@ -255,13 +256,14 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
-                className="interactive px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-                onClick={() => onSectionChange("work")}
+                className="interactive px-8 py-3 bg-gray-800 text-white dark:bg-cyan-400 dark:text-gray-800 rounded-xl font-gotham-medium transform hover:scale-105 transition-all duration-300"
+                onClick={() => onSectionChange("project")}
               >
                 Explore My Work
               </button>
               <button
-                className="interactive px-8 py-3 border-2 border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-300"
+                className="interactive px-8 py-3 border-2 border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-gotham-medium 
+                hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white transition-all duration-300"
                 onClick={() => onSectionChange("contact")}
               >
                 Start a Conversation
@@ -270,13 +272,12 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           </TextReveal>
         </div>
 
+        {/* RIGHT: Visual */}
         <div className="order-1 lg:order-2 flex justify-center">
           <div
             className="transform transition-all duration-1000 hover:scale-105"
             style={{
-              transform: `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${
-                mousePos.y * -5
-              }deg)`,
+              transform: `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${mousePos.y * -5}deg)`,
             }}
           >
             {renderVisual()}
@@ -288,4 +289,3 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
 };
 
 export default HomeSection;
-  

@@ -62,4 +62,39 @@ html {
   font-weight: normal;
 }
 
+@keyframes strikeThrough {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.crossed-text {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+}
+
+.crossed-text::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: currentColor;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  animation: strikeThrough 0.4s forwards ease-in-out;
+  pointer-events: none;
+
+  background-color: #1f2937;
+}
+
+.dark .crossed-text::after{
+  background-color: cyan;
+}
+
 

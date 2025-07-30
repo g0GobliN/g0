@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 // Import components
 import CursorFollower from "./components/CursorFollower";
@@ -10,14 +10,14 @@ import ScrollToTop from "./components/ScrollToTop";
 // Import sections
 import HomeSection from "./sections/HomeSection";
 import AboutSection from "./sections/AboutSection";
-import WorkSection from "./sections/WorkSection";
+import ProjectSection from "./sections/ProjectSection";
 import ContactSection from "./sections/ContactSection";
 
-function MainPage({ scrollY }) {
+function MainPage({ scrollY, onSectionChange }) {
   const location = useLocation();
 
   useEffect(() => {
-    const section = location.pathname.replace("/", ""); 
+    const section = location.pathname.replace("/", "");
     if (section) {
       const element = document.getElementById(section);
       if (element) {
@@ -30,14 +30,16 @@ function MainPage({ scrollY }) {
 
   return (
     <>
-      <HomeSection scrollY={scrollY} id="home" />
+      <HomeSection scrollY={scrollY} id="home" onSectionChange={onSectionChange} />
       <AboutSection id="about" />
-      <WorkSection id="work" />
+      <ProjectSection id="project" />
     </>
   );
 }
 
 export default function ModernPortfolio() {
+  const navigate = useNavigate();
+
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -77,7 +79,7 @@ export default function ModernPortfolio() {
       setScrollY(window.scrollY);
 
       // Update active section based on scroll position
-      const sections = ["home", "about", "work", "contact"];
+      const sections = ["home", "about", "project", "contact"];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -98,9 +100,14 @@ export default function ModernPortfolio() {
 
   const handleSectionChange = (sectionId) => {
     setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+
+    if (sectionId === "contact") {
+      navigate("/contact");
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -115,20 +122,22 @@ export default function ModernPortfolio() {
       }`}
     >
       <CursorFollower />
-      <Navigation 
-      isDark={isDarkMode} 
-      onSectionChange={handleSectionChange}
-      onThemeToggle={toggleTheme} 
-      activeSection={activeSection}
+      <Navigation
+        isDark={isDarkMode}
+        onSectionChange={handleSectionChange}
+        onThemeToggle={toggleTheme}
+        activeSection={activeSection}
       />
 
       <ScrollToTop />
 
       <Routes>
-  <Route path="/" element={<MainPage scrollY={scrollY} />} />
-  <Route path="/contact" element={<ContactSection />} />
-</Routes>
-
+        <Route
+          path="/"
+          element={<MainPage scrollY={scrollY} onSectionChange={handleSectionChange} />}
+        />
+        <Route path="/contact" element={<ContactSection />} />
+      </Routes>
 
       <Footer />
     </div>

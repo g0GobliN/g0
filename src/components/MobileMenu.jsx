@@ -13,7 +13,7 @@ const MobileMenu = ({
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "work", label: "Work" },
+    { id: "project", label: "Project" },
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 

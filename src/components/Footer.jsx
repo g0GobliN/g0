@@ -59,7 +59,7 @@ const Footer = () => {
     <footer className="py-12 px-6 border-t border-gray-200 dark:border-gray-700">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-600 dark:text-gray-400 order-1 text-center md:text-left">
+          <div className="text-gray-600 dark:text-gray-400 order-1 text-center md:text-left font-gotham-book text-sm sm:text-base">
             © 2025 Vishal Gurung - Goblin
           </div>
 
@@ -122,7 +122,7 @@ const Footer = () => {
               </span>
             </button>
           </div>
-             
+
           {/* Reset Like Button for test*/}
           {/* <button
             onClick={() => {
@@ -135,80 +135,79 @@ const Footer = () => {
           </button> */}
 
           <div className="flex items-center gap-4 md:gap-6 order-3 text-sm">
-  <div className="flex items-center gap-2">
-    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-    <span className="text-gray-500 dark:text-gray-400 hidden sm:inline">
-      Available for work
-    </span>
-    <span className="text-gray-500 dark:text-gray-400 sm:hidden">
-      Available
-    </span>
-  </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-gray-500 font-gotham-book dark:text-gray-400 hidden sm:inline">
+                Available for work
+              </span>
+              <span className="text-gray-500 dark:text-gray-400 sm:hidden">
+                Available
+              </span>
+            </div>
 
- {/* Social Icons */}
-<div className="hidden md:flex gap-4">
-  {/* GitHub Icon Link */}
-  <a
-    href="https://github.com/g0GobliN"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-    aria-label="GitHub"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.258.82-.577v-2.234c-3.338.726-4.033-1.61-4.033-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.775.42-1.305.763-1.605-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 013.003-.404 11.52 11.52 0 013.003.404c2.292-1.552 3.298-1.23 3.298-1.23.654 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.63-5.475 5.922.43.372.814 1.103.814 2.222v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-    </svg>
-  </a>
+            {/* Social Icons */}
+            <div className="hidden md:flex gap-4">
+              {/* GitHub Icon Link */}
+              <a
+                href="https://github.com/g0GobliN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="GitHub"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.258.82-.577v-2.234c-3.338.726-4.033-1.61-4.033-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.775.42-1.305.763-1.605-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 013.003-.404 11.52 11.52 0 013.003.404c2.292-1.552 3.298-1.23 3.298-1.23.654 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.63-5.475 5.922.43.372.814 1.103.814 2.222v3.293c0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
 
-  {/* Instagram Icon */}
-  <a
-    href="https://instagram.com/goblin01_"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-    aria-label="Instagram"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      viewBox="0 0 24 24"
-    >
-      <rect
-        width="20"
-        height="20"
-        x="2"
-        y="2"
-        rx="5"
-        ry="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M16 11.37a4 4 0 11-7.999-.001 4 4 0 017.999 0z"
-      />
-      <line
-        x1="17.5"
-        y1="6.5"
-        x2="17.5"
-        y2="6.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  </a>
-</div>
-</div>
-
+              {/* Instagram Icon */}
+              <a
+                href="https://instagram.com/goblin01_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                aria-label="Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <rect
+                    width="20"
+                    height="20"
+                    x="2"
+                    y="2"
+                    rx="5"
+                    ry="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16 11.37a4 4 0 11-7.999-.001 4 4 0 017.999 0z"
+                  />
+                  <line
+                    x1="17.5"
+                    y1="6.5"
+                    x2="17.5"
+                    y2="6.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

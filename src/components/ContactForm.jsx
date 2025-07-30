@@ -55,7 +55,7 @@ const ContactForm = () => {
     <div className="max-w-2xl mx-auto mt-16">
       <TextReveal delay={300}>
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white text-center">
+          <h3 className="text-2xl mb-6 text-gray-900 dark:text-white text-center font-gotham-book">
             Send me a message
           </h3>
 
@@ -69,7 +69,7 @@ const ContactForm = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 font-gotham-book"
               >
                 Name
               </label>
@@ -80,7 +80,8 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors
+                     font-gotham-book"
                 placeholder="Your name"
               />
             </div>
@@ -88,7 +89,7 @@ const ContactForm = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 font-gotham-book"
               >
                 Email
               </label>
@@ -99,7 +100,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 border font-gotham-book border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -107,7 +108,7 @@ const ContactForm = () => {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium font-gotham-book text-gray-700 dark:text-gray-300 mb-2"
               >
                 Message
               </label>
@@ -118,14 +119,14 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors resize-none"
+                className="w-full px-4 py-3 font-gotham-book border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-colors resize-none"
                 placeholder="Tell me about your project or just say hello..."
               />
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out
+              className={`w-full font-gotham-medium flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out
               ${
                 isSubmitting
                   ? "bg-gray-400 dark:bg-gray-600 text-white animate-pulse cursor-wait"
