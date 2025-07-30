@@ -26,7 +26,8 @@ const Navigation = ({
     const element = document.getElementById(id);
     if (!element) return;
 
-    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset;
     const scrollPosition = elementPosition - offset;
 
     window.scrollTo({
@@ -66,7 +67,15 @@ const Navigation = ({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 bg-opacity-80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+      <nav
+       className="
+        fixed top-0 left-0 right-0 z-40
+        bg-white dark:bg-black
+        bg-opacity-80 backdrop-blur-md
+        border-b border-gray-200 dark:border-gray-700
+        transition-colors duration-300
+      "
+      >
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="w-10 h-10 relative">

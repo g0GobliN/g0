@@ -1,7 +1,7 @@
 {
   "name": "g0",
   "private": true,
-  "version": "0.0.0",
+  "version": "4.1.0",
   "type": "module",
   "homepage": "https://g0.monster",
   "scripts": {

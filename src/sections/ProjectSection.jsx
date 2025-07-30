@@ -13,7 +13,7 @@ const AnimatedProjectVisual = ({ type, gifUrl, onClick }) => {
         <img 
           src={gifUrl} 
           alt="Project demo"
-          className="w-full h-full object-cover rounded-xl"
+          className=" w-full h-full object-cover rounded-xl scale-150"
         />
       </div>
     );
