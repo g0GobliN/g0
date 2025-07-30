@@ -57,7 +57,7 @@ const AboutSection = () => {
                   >
                     <DecryptedText
                       text="プロフィール"
-                      className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#f1f1b9] dark:text-white whitespace-nowrap"
+                      className="text-3xl md:text-3xl lg:text-4xl font-bold text-[#f1f1b9] dark:text-white whitespace-nowrap"
                       encryptedClassName="text-2xl md:text-3xl lg:text-4xl font-bold text-[#ffffff] whitespace-nowrap"
                       animateOn="view"
                       sequential={true}
