@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import AnimatedThemeToggle from "./AnimatedThemeToggle";
 import goblinLogo from "/assets/images/goblin.webp";
 
-const Navigation = ({
-  activeSection,
-  onSectionChange,
-  isDark,
-  onThemeToggle,
-}) => {
+const Navigation = ({ isDark, onThemeToggle }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("home"); // single active instead of visited trail
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,66 +14,65 @@ const Navigation = ({
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "project", label: "Project" },
+    { id: "article", label: "Articles", path: "/articles" },
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 
-  // Scroll helper with offset for fixed navbar
+  // Detect if we're on a route (articles/contact)
+  useEffect(() => {
+    const routeMatch = navItems.find(
+      (item) => item.path === location.pathname
+    );
+    if (routeMatch) {
+      setActiveItem(routeMatch.id);
+    }
+  }, [location.pathname]);
+
   const scrollToSectionWithOffset = (id, offset = 80) => {
     const element = document.getElementById(id);
     if (!element) return;
-
     const elementPosition =
       element.getBoundingClientRect().top + window.pageYOffset;
     const scrollPosition = elementPosition - offset;
-
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: scrollPosition, behavior: "smooth" });
   };
 
-  // When logo clicked: scroll home if on "/", else navigate "/"
   const handleLogoClick = (e) => {
     e.preventDefault();
     if (location.pathname === "/") {
       scrollToSectionWithOffset("home", 80);
-      onSectionChange?.("home");
+      setActiveItem("home");
     } else {
       navigate("/");
+      setActiveItem("home");
     }
   };
 
-  // Handle Home/About/Work clicks
   const handleSectionClick = (id) => {
     setIsMobileMenuOpen(false);
+    setActiveItem(id);
 
     if (location.pathname === "/") {
-      // Already on home page, scroll with offset
       scrollToSectionWithOffset(id, 80);
-      onSectionChange?.(id);
     } else {
-      // Navigate to home first, then scroll with offset after short delay
-      navigate("/", { replace: false });
+      navigate("/");
       setTimeout(() => {
         scrollToSectionWithOffset(id, 80);
-        onSectionChange?.(id);
       }, 150);
     }
   };
 
+  const handleLinkClick = (id) => {
+    setIsMobileMenuOpen(false);
+    setActiveItem(id);
+  };
+
   return (
     <>
-      <nav
-       className="
-        fixed top-0 left-0 right-0 z-40
-        bg-white dark:bg-black
-        bg-opacity-80 backdrop-blur-md
-        border-b border-gray-200 dark:border-gray-700
-        transition-colors duration-300
-      "
-      >
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white dark:bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
+            {/* Logo */}
             <div className="w-10 h-10 relative">
               <a href="/" onClick={handleLogoClick}>
                 <img
@@ -96,11 +91,11 @@ const Navigation = ({
                     key={item.id}
                     to={item.path}
                     className={`interactive text-sm font-gotham-book transition-colors ${
-                      activeSection === item.id
+                      activeItem === item.id
                         ? "text-black dark:text-white crossed-text"
                         : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                     }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => handleLinkClick(item.id)}
                   >
                     {item.label}
                   </Link>
@@ -109,7 +104,7 @@ const Navigation = ({
                     key={item.id}
                     onClick={() => handleSectionClick(item.id)}
                     className={`interactive text-sm font-medium transition-colors ${
-                      activeSection === item.id
+                      activeItem === item.id
                         ? "text-black dark:text-white crossed-text"
                         : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                     }`}
@@ -120,11 +115,8 @@ const Navigation = ({
               )}
             </div>
 
-            {/* Desktop Controls (Theme toggle + Social Icons) */}
+            {/* Desktop Controls */}
             <div className="hidden md:flex items-center gap-4">
-              {/* Social Icons */}
-
-              {/* Dark Mode Toggle */}
               <AnimatedThemeToggle isDark={isDark} onToggle={onThemeToggle} />
             </div>
 
@@ -153,16 +145,17 @@ const Navigation = ({
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        activeSection={activeSection}
+        activeSection={activeItem}
         isDark={isDark}
         onThemeToggle={onThemeToggle}
         onSectionClick={handleSectionClick}
       />
 
-      {/* Fixed bottom-right theme toggle on mobile */}
+      {/* Fixed theme toggle on mobile */}
       {isMobileMenuOpen && (
         <div
           className={`fixed bottom-6 right-6 md:hidden z-50 transition-opacity ${

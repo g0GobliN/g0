@@ -115,7 +115,7 @@ const AboutSection = () => {
                   <div className="text-base sm:text-lg font-bold text-white">
                     🇳🇵
                   </div>
-                  <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
+                  <div className="text-xs font-gotham-book text-black dark:text-gray-200">
                     Based in Nepal
                   </div>
                 </div>

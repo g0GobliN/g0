@@ -6,12 +6,16 @@ import CursorFollower from "./components/CursorFollower";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ErrorPage from "./components/ErrorPage";
 
 // Import sections
 import HomeSection from "./sections/HomeSection";
 import AboutSection from "./sections/AboutSection";
 import ProjectSection from "./sections/ProjectSection";
 import ContactSection from "./sections/ContactSection";
+import ArticleSection from "./sections/ArticleSection"
+
+import HelloWorld from "./data/HelloWorld";
 
 function MainPage({ scrollY, onSectionChange }) {
   const location = useLocation();
@@ -137,6 +141,11 @@ export default function ModernPortfolio() {
           element={<MainPage scrollY={scrollY} onSectionChange={handleSectionChange} />}
         />
         <Route path="/contact" element={<ContactSection />} />
+        <Route path="/articles" element={<ArticleSection />} />
+        <Route path="/articles/hello-world" element={<HelloWorld />} />
+
+        {/* Catch-all 404 route */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
 
       <Footer />
