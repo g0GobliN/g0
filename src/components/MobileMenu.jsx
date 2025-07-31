@@ -23,9 +23,9 @@ const MobileMenu = ({
 
   // Your actual article data (simplified example)
   const actualArticle = {
-    date: "2025-21-25",
+    date: "2025-04-21",
     title: "Hello World...",
-    description: "A look into how I built my 2025 portfolio — from choosing React and Tailwind to adding smooth animations....",
+    description: "A look into how I built my 2025 portfolio — from choosing React....",
     readTime: "8 min read",
     path: "/articles/hello-world",
   };
