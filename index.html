@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <link rel="icon" type="image/webp" href="/assets/images/goblin.webp">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>g0</title>
-  <script type="module" crossorigin src="/assets/index-CxyJ5jJl.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-D0W4Tw2D.css">
+<link rel="icon" type="image/webp" href="/assets/images/goblin.webp">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishal Gurung | Goblin Magic in Code</title>
+
+<script>
+  (function(l) {
+    if (l.search[1] === '/' ) {
+      var decoded = l.search.slice(1).split('&').map(function(s) { 
+        return s.replace(/~and~/g, '&')
+      }).join('?');
+      window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+      );
+    }
+  }(window.location))
+</script>
+  <script type="module" crossorigin src="/assets/index-B2jJlRNi.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DVvxPpuq.css">
 </head>
 <body>
-  <div id="root"></div>
+<div id="root"></div>
 </body>
 </html>
