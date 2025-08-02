@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db } from "../firebase";
 import { doc, getDoc, setDoc, updateDoc, increment } from "firebase/firestore";
 
@@ -6,6 +6,7 @@ const Footer = () => {
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const audioRef = useRef(null);
 
   // Load likes count on component mount
   useEffect(() => {
@@ -29,13 +30,80 @@ const Footer = () => {
     };
 
     fetchLikes();
-  }, []);
-  // Handle like button click
 
+    // Initialize audio
+    audioRef.current = new Audio();
+    // You can use a web audio API to generate a sound, or add an audio file
+    // For now, we'll create a simple programmatic sound
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.src = '';
+      }
+    };
+  }, []);
+
+  // Function to play a satisfying click sound
+  const playClickSound = () => {
+    try {
+      // Create a simple synthetic sound using Web Audio API
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Create a more satisfying "pop" sound
+      const oscillator1 = audioContext.createOscillator();
+      const oscillator2 = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      // Set up the first oscillator (main tone)
+      oscillator1.connect(gainNode);
+      oscillator1.frequency.setValueAtTime(800, audioContext.currentTime);
+      oscillator1.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+      oscillator1.type = 'sine';
+      
+      // Set up the second oscillator (harmonic)
+      oscillator2.connect(gainNode);
+      oscillator2.frequency.setValueAtTime(1200, audioContext.currentTime);
+      oscillator2.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.08);
+      oscillator2.type = 'triangle';
+      
+      // Set up the gain (volume envelope)
+      gainNode.connect(audioContext.destination);
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+      
+      // Start and stop the oscillators
+      oscillator1.start(audioContext.currentTime);
+      oscillator1.stop(audioContext.currentTime + 0.15);
+      
+      oscillator2.start(audioContext.currentTime);
+      oscillator2.stop(audioContext.currentTime + 0.12);
+      
+    } catch (error) {
+      console.log('Audio not supported or blocked:', error);
+    }
+  };
+
+  // Alternative: If you want to use an audio file instead
+  const playAudioFile = () => {
+    try {
+      // Create audio element with a data URL for a simple beep
+      const audio = new Audio('data:audio/wav;base64,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');
+      audio.volume = 0.3;
+      audio.play().catch(e => console.log('Audio play failed:', e));
+    } catch (error) {
+      console.log('Audio file playback failed:', error);
+    }
+  };
+
+  // Handle like button click
   const handleLike = async () => {
     if (hasLiked) return;
 
-    console.log("Like button clicked!"); // ← ADD THIS
+    console.log("Like button clicked!");
+
+    // Play sound immediately for better UX
+    playClickSound();
 
     try {
       const docRef = doc(db, "stats", "likes");
@@ -57,17 +125,15 @@ const Footer = () => {
 
   return (
     <footer
-  className="
-    relative 
-    py-12 px-6
-    border-t border-gray-200 dark:border-gray-700
-    bg-gray-50 text-gray-800
-    dark:bg-black dark:text-gray-300
-    transition-colors duration-300
-  "
->
-
-
+      className="
+        relative 
+        py-12 px-6
+        border-t border-gray-200 dark:border-gray-700
+        bg-gray-50 text-gray-800
+        dark:bg-black dark:text-gray-300
+        transition-colors duration-300
+      "
+    >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-600 dark:text-gray-400 order-1 text-center md:text-left font-gotham-book text-sm sm:text-base">

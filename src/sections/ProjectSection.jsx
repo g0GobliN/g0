@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ArrowRight, X } from "lucide-react";
+import TextReveal from "../components/TextReveal"; // ✅ Import TextReveal
 
 const AnimatedProjectVisual = ({ type, gifUrl, onClick }) => {
   if (gifUrl) {
@@ -93,12 +94,15 @@ const ProjectsSection = () => {
             }`}
           >
             <div className="lg:w-1/2 mb-8 lg:mb-0">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-px bg-gray-800 dark:bg-cyan-400"></div>
-                <span className="ml-3 text-gray-800 dark:text-cyan-400 font-gotham-book-italic text-xs">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+              <TextReveal delay={index * 100}>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-px bg-gray-800 dark:bg-cyan-400"></div>
+                  <span className="ml-3 text-gray-800 dark:text-cyan-400 font-gotham-book-italic text-xs">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </TextReveal>
+              
               <AnimatedProjectVisual
                 type={project.type}
                 gifUrl={project.gifUrl}
@@ -107,22 +111,29 @@ const ProjectsSection = () => {
             </div>
 
             <div className="lg:w-1/3">
-              <h3 className="text-2xl lg:text-3xl font-gotham-book text-black-400 dark:text-white mb-4 leading-tight">
-                {project.title}
-              </h3>
-              <p className="text-black-400 dark:text-gray-400 font-gotham-book text-sm mb-6 leading-relaxed max-w-xs">
-                {project.description}
-              </p>
+              <TextReveal delay={index * 100 + 200}>
+                <h3 className="text-xl lg:text-2xl font-gotham-book text-black-400 dark:text-white mb-4 leading-tight">
+                  {project.title}
+                </h3>
+              </TextReveal>
+              
+              <TextReveal delay={index * 100 + 300}>
+                <p className="text-black-400 dark:text-gray-400 font-gotham-book text-xs mb-5 leading-relaxed max-w-xs">
+                  {project.description}
+                </p>
+              </TextReveal>
 
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-gray-800 dark:bg-cyan-400 text-white dark:text-black px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-sm font-gotham hover:bg-gray-600 dark:hover:bg-cyan-300 transition-colors duration-300 max-w-max"
-              >
-                <span>View website</span>
-                <ArrowRight size={16} />
-              </a>
+              <TextReveal delay={index * 100 + 400}>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 bg-gray-800 dark:bg-cyan-400 text-white dark:text-black px-4 py-2 md:px-5 md:py-2.5 rounded-lg text-xs font-gotham hover:bg-gray-600 dark:hover:bg-cyan-300 transition-colors duration-300 max-w-max"
+                >
+                  <span>View website</span>
+                  <ArrowRight size={14} />
+                </a>
+              </TextReveal>
             </div>
           </div>
         ))}
@@ -143,10 +154,10 @@ const ProjectsSection = () => {
               alt={fullscreenProject.title}
               className="w-full h-auto rounded-lg shadow-2xl transform scale-105 transition-transform duration-500"
             />
-            <h2 className="text-white text-2xl mt-6">
+            <h2 className="text-white text-xl mt-6">
               {fullscreenProject.title}
             </h2>
-            <p className="text-gray-300 mt-2">
+            <p className="text-gray-300 text-sm mt-2">
               {fullscreenProject.description}
             </p>
           </div>

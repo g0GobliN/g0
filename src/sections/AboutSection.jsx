@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import DecryptedText from "../components/DecryptedText";
 import SkillsGrid from "../components/SkillsGrid";
+import TextReveal from "../components/TextReveal"; // ✅ Import TextReveal
 
 const AboutSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,12 +30,14 @@ const AboutSection = () => {
             {/* Left Column - Photo */}
             <div className="lg:w-1/2 mb-8 lg:mb-0">
               {/* Project Number */}
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-px bg-black dark:bg-cyan-400"></div>
-                <span className="ml-3 text-black dark:text-cyan-400 text-xs">
-                  ABOUT
-                </span>
-              </div>
+              <TextReveal>
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-px bg-black dark:bg-cyan-400"></div>
+                  <span className="ml-3 text-black dark:text-cyan-400 text-xs">
+                    ABOUT
+                  </span>
+                </div>
+              </TextReveal>
 
               {/* Photo Container */}
               <div
@@ -76,79 +79,89 @@ const AboutSection = () => {
 
             {/* Right Column - Content */}
             <div className="lg:w-1/2 transform scale-[1.14] transition-transform duration-500 origin-top-left">
-              <h2 className="text-2xl lg:text-3xl font-bold text:black dark:text-white mb-4 leading-tight font-gotham-book">
-                About Me
-              </h2>
+              <TextReveal delay={200}>
+                <h2 className="text-2xl lg:text-3xl font-bold text:black dark:text-white mb-4 leading-tight font-gotham-book">
+                  About Me
+                </h2>
+              </TextReveal>
 
-              <div className="space-y-4 mb-6 max-w-xs ">
-                <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book ">
-                  Hi, I'm <span className="underline">Vishal Gurung</span>.
-                  Currently studying in Japan, I've immersed myself in a culture
-                  that values precision and craftsmanship.
-                </p>
+              <TextReveal delay={300}>
+                <div className="space-y-4 mb-6 max-w-xs ">
+                  <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book ">
+                    Hi, I'm <span className="underline">Vishal Gurung</span>.
+                    Currently studying in Japan, I've immersed myself in a culture
+                    that values precision and craftsmanship.
+                  </p>
 
-                <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book">
-                  I believe in creating technology that doesn't just function,
-                  but inspires.
-                </p>
-              </div>
+                  <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book">
+                    I believe in creating technology that doesn't just function,
+                    but inspires.
+                  </p>
+                </div>
+              </TextReveal>
 
-              {/* Stats */}
-              <div className="flex items-center space-x-3 sm:space-x-6 mb-6">
-                <div className="text-center">
-                  <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
-                    2+
+              <TextReveal delay={400}>
+                {/* Stats */}
+                <div className="flex items-center space-x-3 sm:space-x-6 mb-6">
+                  <div className="text-center">
+                    <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
+                      2+
+                    </div>
+                    <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
+                      Projects
+                    </div>
                   </div>
-                  <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
-                    Projects
+                  <div className="text-center">
+                    <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
+                      Exp.
+                    </div>
+                    <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
+                      Developing
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-base sm:text-lg font-bold text-white">
+                      🇳🇵
+                    </div>
+                    <div className="text-xs font-gotham-book text-black dark:text-gray-200">
+                      Based in Nepal
+                    </div>
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
-                    Exp.
-                  </div>
-                  <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
-                    Developing
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-base sm:text-lg font-bold text-white">
-                    🇳🇵
-                  </div>
-                  <div className="text-xs font-gotham-book text-black dark:text-gray-200">
-                    Based in Nepal
-                  </div>
-                </div>
-              </div>
+              </TextReveal>
 
-              {/* Contact Button */}
-              <button
-                onClick={handleSendMessageClick}
-                className="
-                inline-flex items-center space-x-2
-                bg-gray-800 dark:bg-cyan-400 
-                text-white dark:text-black 
-                px-4 py-2 md:px-6 md:py-3
-                rounded-lg 
-                text-xs md:text-sm 
-                font-gotham 
-                hover:bg-gray-600 dark:hover:bg-cyan-300 
-                transition-colors duration-300 
-                max-w-max"
-              >
-                <span>Send message</span>
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-              </button>
+              <TextReveal delay={500}>
+                {/* Contact Button */}
+                <button
+                  onClick={handleSendMessageClick}
+                  className="
+                  inline-flex items-center space-x-2
+                  bg-gray-800 dark:bg-cyan-400 
+                  text-white dark:text-black 
+                  px-4 py-2 md:px-6 md:py-3
+                  rounded-lg 
+                  text-xs md:text-sm 
+                  font-gotham 
+                  hover:bg-gray-600 dark:hover:bg-cyan-300 
+                  transition-colors duration-300 
+                  max-w-max"
+                >
+                  <span>Send message</span>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                </button>
+              </TextReveal>
             </div>
           </div>
 
           {/* SkillsGrid below both columns */}
-          <div
-            className="mt-24 max-w-6xl mx-auto px-4 overflow-x-auto"
-            style={{ transform: "scale(0.85)", transformOrigin: "top center" }}
-          >
-            <SkillsGrid />
-          </div>
+          <TextReveal delay={600}>
+            <div
+              className="mt-24 max-w-6xl mx-auto px-4 overflow-x-auto"
+              style={{ transform: "scale(0.85)", transformOrigin: "top center" }}
+            >
+              <SkillsGrid />
+            </div>
+          </TextReveal>
         </div>
       </section>
 

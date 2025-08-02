@@ -128,6 +128,12 @@ export default function HelloWorld() {
               iterations than I initially expected.
             </p>
 
+            <p className="text-sm text-black dark:text-gray-300 leading-relaxed font-gotham-book mb-6">
+              I also had to ensure accessibility and optimize for performance on both desktop and mobile devices.
+              Learning about semantic HTML, ARIA labels, and keyboard navigation opened my eyes to how
+              important inclusive design really is.
+            </p>
+
             {/* Image placeholder */}
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
@@ -139,11 +145,6 @@ export default function HelloWorld() {
               </div>
             </div>
 
-            <p className="text-sm text-black dark:text-gray-300 leading-relaxed font-gotham-book mb-6">
-              I also had to ensure accessibility and optimize for performance on both desktop and mobile devices.
-              Learning about semantic HTML, ARIA labels, and keyboard navigation opened my eyes to how
-              important inclusive design really is.
-            </p>
 
             <p className="text-sm text-black dark:text-gray-300 leading-relaxed font-gotham-book">
               One of the most fun challenges was creating a custom 404 error page. I wanted something that

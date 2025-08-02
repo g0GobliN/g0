@@ -27,9 +27,9 @@ const ArticleSection = () => {
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         {/* Left Column */}
         <div className="w-full lg:w-[40%] space-y-8 flex flex-col items-center">
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-6 -translate-x-[95px] translate-y-5 sm:-translate-x-0 sm:translate-y-0">
             <div className="w-12 h-px bg-black dark:bg-cyan-400"></div>
-            <span className="ml-3 text-black dark:text-cyan-400 text-xs tracking-wider">
+            <span className="ml-3 text-black dark:text-cyan-400 text-xs">
               LATEST ARTICLES
             </span>
           </div>

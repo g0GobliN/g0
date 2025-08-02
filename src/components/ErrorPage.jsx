@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause } from 'lucide-react';
+// Uncomment one of these based on your routing setup:
+// import { useNavigate } from 'react-router-dom'; // For React Router
+// import { useRouter } from 'next/router'; // For Next.js
 
-const ErrorPage = () => {
+const ErrorPage = ({ onNavigateHome }) => { // Add prop for custom navigation
   const [isVisible, setIsVisible] = useState(false);
   const [showPlaylists, setShowPlaylists] = useState(false);
   const [glitchText, setGlitchText] = useState('404');
   const audioRef = useRef(new Audio());
   const [playingId, setPlayingId] = useState(null);
   const [easterEggId, setEasterEggId] = useState(null);
+
+  // Uncomment based on your routing setup:
+  // const navigate = useNavigate(); // For React Router
+  // const router = useRouter(); // For Next.js
 
   const playlists = [
     { 
@@ -86,8 +93,13 @@ const ErrorPage = () => {
   }, []);
 
   const handleRetry = () => {
-    // navigate("/");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Option 1: Use custom navigation prop (recommended)
+    if (onNavigateHome) {
+      onNavigateHome();
+    }
+    else {
+      window.location.href = '/';
+    }
   };
 
   const togglePlaylists = () => setShowPlaylists(!showPlaylists);
@@ -132,13 +144,13 @@ const ErrorPage = () => {
         />
       </div>
 
-      {/* Main Content Container - Conditionally center based on playlist state */}
-      <div className={`relative z-10 px-6 min-h-screen font-gotham-book transform transition-all duration-1000 ${
+      {/* Main Content Container - Always use py-16 but center with margin */}
+      <div className={`relative z-10 px-6 py-16 font-gotham-book transform transition-all duration-1000 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-      } ${showPlaylists ? 'py-16' : 'flex items-center justify-center'}`}>
+      } ${!showPlaylists ? 'min-h-screen flex items-center' : ''}`}>
         
-        {/* Content wrapper - centers content but allows expansion */}
-        <div className="text-center max-w-2xl mx-auto">
+        {/* Content wrapper */}
+        <div className={`text-center max-w-2xl mx-auto ${!showPlaylists ? 'w-full' : ''}`}>
           
           {/* Section Sign */}
           <div className="flex items-center justify-center mb-8 relative -top-7 -left-20">
@@ -170,7 +182,8 @@ const ErrorPage = () => {
               onClick={handleRetry}
               className="px-5 py-2 rounded-lg text-sm font-gotham-book
                 bg-gray-800/80 text-white
-                hover:bg-gray-600/90 transition-colors duration-300"
+                hover:bg-gray-600/90 transition-colors duration-300
+                cursor-pointer"
             >
               ← Go Home
             </button>
@@ -185,9 +198,13 @@ const ErrorPage = () => {
             </button>
           </div>
 
-          {/* Playlists - Expanded smoothly without cutting content */}
-          {showPlaylists && (
-            <div className="transform transition-all duration-500 translate-y-0 opacity-100 mb-20">
+          {/* Playlists - Smooth expansion */}
+          <div className={`transform transition-all duration-500 overflow-hidden ${
+            showPlaylists 
+              ? 'max-h-[2000px] opacity-100 translate-y-0' 
+              : 'max-h-0 opacity-0 translate-y-4'
+          }`}>
+            <div className="mb-20">
               <h2 className="text-2xl font-light text-gray-700 dark:text-white mb-4">
                 Available Playlists
               </h2>
@@ -239,7 +256,7 @@ const ErrorPage = () => {
                 ))}
               </div>
             </div>
-          )}
+          </div>
 
           {/* Footer */}
           <p className="mt-16 text-xs font-mono text-gray-400 tracking-widest">
