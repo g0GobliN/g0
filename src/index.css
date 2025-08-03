@@ -104,3 +104,22 @@ html {
 .animate-fadeIn {
   animation: fadeIn 0.6s ease forwards;
 }
+
+/* for about left and right div */
+
+@layer utilities {
+  @media (min-width: 507px) {
+    .min-507\:flex {
+      display: flex;
+    }
+    .min-507\:items-center {
+      align-items: center;
+    }
+    .min-507\:space-x-12 {
+      column-gap: 3rem; /* same as space-x-12 */
+    }
+    .min-507\:text-left {
+      text-align: left;
+    }
+  }
+}

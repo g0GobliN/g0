@@ -102,7 +102,7 @@ const ProjectsSection = () => {
                   </span>
                 </div>
               </TextReveal>
-              
+
               <AnimatedProjectVisual
                 type={project.type}
                 gifUrl={project.gifUrl}
@@ -112,13 +112,13 @@ const ProjectsSection = () => {
 
             <div className="lg:w-1/3">
               <TextReveal delay={index * 100 + 200}>
-                <h3 className="text-xl lg:text-2xl font-gotham-book text-black-400 dark:text-white mb-4 leading-tight">
+                <h3 className="text-lg md:text-xl font-gotham-book text-black dark:text-white mb-5 leading-snug">
                   {project.title}
                 </h3>
               </TextReveal>
-              
+
               <TextReveal delay={index * 100 + 300}>
-                <p className="text-black-400 dark:text-gray-400 font-gotham-book text-xs mb-5 leading-relaxed max-w-xs">
+                <p className="text-sm text-gray-700 dark:text-gray-400 font-gotham-book mb-5 leading-relaxed max-w-md">
                   {project.description}
                 </p>
               </TextReveal>
@@ -128,7 +128,10 @@ const ProjectsSection = () => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-gray-800 dark:bg-cyan-400 text-white dark:text-black px-4 py-2 md:px-5 md:py-2.5 rounded-lg text-xs font-gotham hover:bg-gray-600 dark:hover:bg-cyan-300 transition-colors duration-300 max-w-max"
+                  className="inline-flex items-center space-x-2 bg-gray-800 dark:bg-cyan-400 
+               text-white dark:text-black px-4 py-2.5 rounded-lg 
+               text-xs font-gotham hover:bg-gray-600 
+               dark:hover:bg-cyan-300 transition-colors duration-300"
                 >
                   <span>View website</span>
                   <ArrowRight size={14} />

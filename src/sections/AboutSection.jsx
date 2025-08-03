@@ -80,50 +80,55 @@ const AboutSection = () => {
             {/* Right Column - Content */}
             <div className="lg:w-1/2 transform scale-[1.14] transition-transform duration-500 origin-top-left">
               <TextReveal delay={200}>
-                <h2 className="text-2xl lg:text-3xl font-bold text:black dark:text-white mb-4 leading-tight font-gotham-book">
+                <h2 className="text-lg md:text-xl font-bold text-black dark:text-white mb-4 leading-tight font-gotham-book">
                   About Me
                 </h2>
               </TextReveal>
 
               <TextReveal delay={300}>
-                <div className="space-y-4 mb-6 max-w-xs ">
-                  <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book ">
+                <div className="space-y-4 mb-6 max-w-xs">
+                  <p className="text-xs md:text-[13px] text-black dark:text-gray-400 leading-relaxed font-gotham-book">
                     Hi, I'm <span className="underline">Vishal Gurung</span>.
-                    Currently studying in Japan, I've immersed myself in a culture
-                    that values precision and craftsmanship.
+                    I’m currently studying in Japan and learning how to build
+                    useful, clean, and reliable software.
                   </p>
 
-                  <p className="text-black dark:text-gray-400 text-sm leading-relaxed font-gotham-book">
-                    I believe in creating technology that doesn't just function,
-                    but inspires.
+                  <p className="text-xs md:text-[13px] text-black dark:text-gray-400 leading-relaxed font-gotham-book">
+                    I focus on writing code that works well and looks good. I’m
+                    always trying to improve and take on new challenges in
+                    development.
+                  </p>
+
+                  <p className="text-xs md:text-[13px] text-black dark:text-gray-400 leading-relaxed font-gotham-book">
+                    When I’m not coding, I enjoy experiencing different cultures
+                    and finding inspiration in everyday life.
                   </p>
                 </div>
               </TextReveal>
 
               <TextReveal delay={400}>
-                {/* Stats */}
                 <div className="flex items-center space-x-3 sm:space-x-6 mb-6">
                   <div className="text-center">
-                    <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
+                    <div className="text-sm sm:text-base font-gotham-medium text-black dark:text-white">
                       2+
                     </div>
-                    <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
+                    <div className="text-[11px] font-gotham-book text-black dark:text-gray-200">
                       Projects
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-base sm:text-lg font-gotham-medium text-black-400 dark:text-white">
+                    <div className="text-sm sm:text-base font-gotham-medium text-black dark:text-white">
                       Exp.
                     </div>
-                    <div className="text-xs font-gotham-book text-black-400 dark:text-gray-200">
+                    <div className="text-[11px] font-gotham-book text-black dark:text-gray-200">
                       Developing
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-base sm:text-lg font-bold text-white">
+                    <div className="text-sm sm:text-base font-bold text-white">
                       🇳🇵
                     </div>
-                    <div className="text-xs font-gotham-book text-black dark:text-gray-200">
+                    <div className="text-[11px] font-gotham-book text-black dark:text-gray-200">
                       Based in Nepal
                     </div>
                   </div>
@@ -131,23 +136,23 @@ const AboutSection = () => {
               </TextReveal>
 
               <TextReveal delay={500}>
-                {/* Contact Button */}
                 <button
                   onClick={handleSendMessageClick}
                   className="
-                  inline-flex items-center space-x-2
-                  bg-gray-800 dark:bg-cyan-400 
-                  text-white dark:text-black 
-                  px-4 py-2 md:px-6 md:py-3
-                  rounded-lg 
-                  text-xs md:text-sm 
-                  font-gotham 
-                  hover:bg-gray-600 dark:hover:bg-cyan-300 
-                  transition-colors duration-300 
-                  max-w-max"
+                    inline-flex items-center space-x-1.5
+                    bg-gray-800 dark:bg-cyan-400
+                    text-white dark:text-black
+                    px-3 py-1.5
+                    rounded-md
+                    text-[11px]
+                    font-gotham
+                    hover:bg-gray-600 dark:hover:bg-cyan-300
+                    transition-colors duration-300
+                    max-w-max
+                  "
                 >
                   <span>Send message</span>
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </TextReveal>
             </div>
@@ -157,7 +162,10 @@ const AboutSection = () => {
           <TextReveal delay={600}>
             <div
               className="mt-24 max-w-6xl mx-auto px-4 overflow-x-auto"
-              style={{ transform: "scale(0.85)", transformOrigin: "top center" }}
+              style={{
+                transform: "scale(0.85)",
+                transformOrigin: "top center",
+              }}
             >
               <SkillsGrid />
             </div>
