@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
-// Import components
 import CursorFollower from "./components/CursorFollower";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ErrorPage from "./components/ErrorPage";
+import LogoSplash from "./components/logoSplash"; 
 
-// Import sections
 import HomeSection from "./sections/HomeSection";
 import AboutSection from "./sections/AboutSection";
 import ProjectSection from "./sections/ProjectSection";
 import ContactSection from "./sections/ContactSection";
-import ArticleSection from "./sections/ArticleSection"
+import ArticleSection from "./sections/ArticleSection";
 
 import HelloWorld from "./data/HelloWorld";
 
@@ -43,23 +42,20 @@ function MainPage({ scrollY, onSectionChange }) {
 
 export default function ModernPortfolio() {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Scroll to top on initial load / refresh
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setIsDarkMode(savedTheme === "dark");
     } else {
-      // Check system preference
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
@@ -68,7 +64,6 @@ export default function ModernPortfolio() {
   }, []);
 
   useEffect(() => {
-    // Update HTML class and localStorage when theme changes
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -82,7 +77,6 @@ export default function ModernPortfolio() {
     const handleScroll = () => {
       setScrollY(window.scrollY);
 
-      // Update active section based on scroll position
       const sections = ["home", "about", "project", "contact"];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
@@ -115,9 +109,11 @@ export default function ModernPortfolio() {
     }
   };
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  if (loading) {
+    return <LogoSplash onAnimationEnd={() => setLoading(false)} />;
+  }
 
   return (
     <div
@@ -132,9 +128,7 @@ export default function ModernPortfolio() {
         onThemeToggle={toggleTheme}
         activeSection={activeSection}
       />
-
       <ScrollToTop />
-
       <Routes>
         <Route
           path="/"
@@ -143,11 +137,8 @@ export default function ModernPortfolio() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/articles" element={<ArticleSection />} />
         <Route path="/articles/hello-world" element={<HelloWorld />} />
-
-        {/* Catch-all 404 route */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-
       <Footer />
     </div>
   );

@@ -118,7 +118,7 @@ const ProjectsSection = () => {
               </TextReveal>
 
               <TextReveal delay={index * 100 + 300}>
-                <p className="text-sm text-gray-700 dark:text-gray-400 font-gotham-book mb-5 leading-relaxed max-w-md">
+                <p className="text-[13px] md:text-[14px] text-gray-700 dark:text-gray-400 font-gotham-book mb-5 leading-relaxed max-w-md">
                   {project.description}
                 </p>
               </TextReveal>

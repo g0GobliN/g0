@@ -1,7 +1,7 @@
 {
   "name": "g0",
   "private": true,
-  "version": "4.3.0",
+  "version": "4.4.0",
   "type": "module",
   "homepage": "https://g0.monster",
   "scripts": {
@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.7.1",
     "react-simple-typewriter": "^5.0.1",
+    "react-spinners": "^0.17.0",
     "three": "^0.178.0",
     "tone": "^15.1.22"
   },

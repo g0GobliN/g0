@@ -6,7 +6,7 @@ import goblinLogo from "/assets/images/goblin.webp";
 
 const Navigation = ({ isDark, onThemeToggle }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("home"); // single active instead of visited trail
+  const [activeItem, setActiveItem] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,12 +20,44 @@ const Navigation = ({ isDark, onThemeToggle }) => {
 
   // Detect if we're on a route (articles/contact)
   useEffect(() => {
-    const routeMatch = navItems.find(
-      (item) => item.path === location.pathname
-    );
+    const routeMatch = navItems.find((item) => item.path === location.pathname);
     if (routeMatch) {
       setActiveItem(routeMatch.id);
     }
+  }, [location.pathname]);
+
+  // Scroll tracking (only homepage sections)
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      return; // ❌ Disable scroll tracking on non-home pages
+    }
+
+    const sections = navItems
+      .filter((item) => !item.path) // only in-page sections
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveItem(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px", // trigger near middle
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, [location.pathname]);
 
   const scrollToSectionWithOffset = (id, offset = 80) => {
@@ -62,9 +94,10 @@ const Navigation = ({ isDark, onThemeToggle }) => {
     }
   };
 
-  const handleLinkClick = (id) => {
+  const handleLinkClick = (id, path) => {
     setIsMobileMenuOpen(false);
     setActiveItem(id);
+    navigate(path);
   };
 
   return (
@@ -95,7 +128,7 @@ const Navigation = ({ isDark, onThemeToggle }) => {
                         ? "text-black dark:text-white crossed-text"
                         : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                     }`}
-                    onClick={() => handleLinkClick(item.id)}
+                    onClick={() => handleLinkClick(item.id, item.path)}
                   >
                     {item.label}
                   </Link>

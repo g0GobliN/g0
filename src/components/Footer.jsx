@@ -35,10 +35,10 @@ const Footer = () => {
     audioRef.current = new Audio();
     // You can use a web audio API to generate a sound, or add an audio file
     // For now, we'll create a simple programmatic sound
-    
+
     return () => {
       if (audioRef.current) {
-        audioRef.current.src = '';
+        audioRef.current.src = "";
       }
     };
   }, []);
@@ -47,40 +47,52 @@ const Footer = () => {
   const playClickSound = () => {
     try {
       // Create a simple synthetic sound using Web Audio API
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      
+      const audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+
       // Create a more satisfying "pop" sound
       const oscillator1 = audioContext.createOscillator();
       const oscillator2 = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
-      
+
       // Set up the first oscillator (main tone)
       oscillator1.connect(gainNode);
       oscillator1.frequency.setValueAtTime(800, audioContext.currentTime);
-      oscillator1.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-      oscillator1.type = 'sine';
-      
+      oscillator1.frequency.exponentialRampToValueAtTime(
+        400,
+        audioContext.currentTime + 0.1
+      );
+      oscillator1.type = "sine";
+
       // Set up the second oscillator (harmonic)
       oscillator2.connect(gainNode);
       oscillator2.frequency.setValueAtTime(1200, audioContext.currentTime);
-      oscillator2.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.08);
-      oscillator2.type = 'triangle';
-      
+      oscillator2.frequency.exponentialRampToValueAtTime(
+        600,
+        audioContext.currentTime + 0.08
+      );
+      oscillator2.type = "triangle";
+
       // Set up the gain (volume envelope)
       gainNode.connect(audioContext.destination);
       gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
-      
+      gainNode.gain.linearRampToValueAtTime(
+        0.3,
+        audioContext.currentTime + 0.01
+      );
+      gainNode.gain.exponentialRampToValueAtTime(
+        0.01,
+        audioContext.currentTime + 0.15
+      );
+
       // Start and stop the oscillators
       oscillator1.start(audioContext.currentTime);
       oscillator1.stop(audioContext.currentTime + 0.15);
-      
+
       oscillator2.start(audioContext.currentTime);
       oscillator2.stop(audioContext.currentTime + 0.12);
-      
     } catch (error) {
-      console.log('Audio not supported or blocked:', error);
+      console.log("Audio not supported or blocked:", error);
     }
   };
 
@@ -88,11 +100,13 @@ const Footer = () => {
   const playAudioFile = () => {
     try {
       // Create audio element with a data URL for a simple beep
-      const audio = new Audio('data:audio/wav;base64,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');
+      const audio = new Audio(
+        "data:audio/wav;base64,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"
+      );
       audio.volume = 0.3;
-      audio.play().catch(e => console.log('Audio play failed:', e));
+      audio.play().catch((e) => console.log("Audio play failed:", e));
     } catch (error) {
-      console.log('Audio file playback failed:', error);
+      console.log("Audio file playback failed:", error);
     }
   };
 
@@ -223,7 +237,7 @@ const Footer = () => {
             </div>
 
             {/* Social Icons */}
-            <div className="hidden md:flex gap-4">
+            <div className="hidden md:flex gap-4 items-center">
               {/* GitHub Icon Link */}
               <a
                 href="https://github.com/g0GobliN"
@@ -283,6 +297,27 @@ const Footer = () => {
                   />
                 </svg>
               </a>
+              {/* PDF Download Button */}
+              {/* <button
+                onClick={() =>
+                  window.open(
+                    "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
+                    "_blank"
+                  )
+                }
+                className="flex items-center justify-center rounded-full
+             text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
+             transition-colors"
+                title="View PDF Online"
+              > */}
+                {/* Light mode icon (dark icon) */}
+                {/* <img
+                  src="/assets/images/octopus.svg"
+                  alt="View PDF"
+                  className="block dark:hidden"
+                  style={{ width: "32px", height: "32px" }}
+                />
+              </button> */}
             </div>
           </div>
         </div>

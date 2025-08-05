@@ -26,9 +26,9 @@ const AboutSection = () => {
              transition-colors duration-300"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="lg:flex lg:items-center lg:space-x-12">
+          <div className="md:flex md:items-center md:space-x-12">
             {/* Left Column - Photo */}
-            <div className="lg:w-1/2 mb-8 lg:mb-0">
+            <div className="md:w-1/2 mb-8 md:mb-0">
               {/* Project Number */}
               <TextReveal>
                 <div className="flex items-center mb-6">
@@ -78,7 +78,7 @@ const AboutSection = () => {
             </div>
 
             {/* Right Column - Content */}
-            <div className="lg:w-1/2 transform scale-[1.14] transition-transform duration-500 origin-top-left">
+            <div className="md:w-1/2 transform scale-[1.14] transition-transform duration-500 origin-top-left">
               <TextReveal delay={200}>
                 <h2 className="text-lg md:text-xl font-bold text-black dark:text-white mb-4 leading-tight font-gotham-book">
                   About Me

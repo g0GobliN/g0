@@ -44,7 +44,7 @@ const ContactSection = () => {
             </div>
 
             {/* Main Content */}
-            <div className="transform scale-[1.14] transition-transform duration-500 origin-top-left">
+            <div className="transform scale-[1.14] transition-transform duration-500 origin-top-left overflow-hidden">
               <TextReveal>
                 <h2 className="text-2xl lg:text-3xl text-black-400 dark:text-white mb-4 leading-tight">
                   Let's Work Together

@@ -7,6 +7,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   onSectionChange = onSectionChange || (() => {});
   const [currentScene, setCurrentScene] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [showTip, setShowTip] = useState(true); // ✅ new tip state
 
   const scenes = [
     {
@@ -31,6 +32,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
     },
   ];
 
+  // cycle scenes
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentScene((prev) => (prev + 1) % scenes.length);
@@ -38,6 +40,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
     return () => clearInterval(interval);
   }, []);
 
+  // track mouse position
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePos({
@@ -47,6 +50,12 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // hide tip after 4 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowTip(false), 4000);
+    return () => clearTimeout(timer);
   }, []);
 
   const TerminalVisual = () => (
@@ -188,32 +197,19 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
     }
   };
 
-  const getParticleColors = (index) => {
-    const colorSets = [
-      "from-green-400 to-blue-400",
-      "from-purple-400 to-pink-400",
-      "from-yellow-400 to-red-400",
-      "from-blue-400 to-purple-400",
-    ];
-    return colorSets[currentScene % colorSets.length];
-  };
-
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300
+      className=" min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300
                  bg-gray-50 text-gray-900 
                  dark:bg-black dark:text-white"
     >
       <div className="w-full max-w-6xl mx-auto px-6 pt-8 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        
-        {/* LEFT: Text */}
+        {/* LEFT */}
         <div className="text-center lg:text-left order-2 lg:order-1">
           <div className="mb-6">
-            
-            {/* Title */}
             <TextReveal key={currentScene} className="mb-2">
-              <h1 className="text-3xl md:text-5xl font-gotham-book leading-tight text-gray-800 dark:text-white">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-gotham-book leading-tight text-gray-800 dark:text-white">
                 {currentScene === 0 ? (
                   <Typewriter words={[scenes[0].title]} typeSpeed={50} />
                 ) : (
@@ -222,9 +218,12 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
               </h1>
             </TextReveal>
 
-            {/* Subtitle */}
-            <TextReveal key={`${currentScene}-sub`} delay={200} className="mb-8">
-              <p className="text-xl md:text-2xl font-gotham-book text-gray-600 dark:text-gray-400">
+            <TextReveal
+              key={`${currentScene}-sub`}
+              delay={200}
+              className="mb-8"
+            >
+              <p className="text-xl md:text-xl lg:text-2xl font-gotham-book text-gray-600 dark:text-gray-400">
                 {scenes[currentScene]?.subtitle}
               </p>
             </TextReveal>
@@ -272,18 +271,27 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
           </TextReveal>
         </div>
 
-        {/* RIGHT: Visual */}
+        {/* RIGHT */}
         <div className="order-1 lg:order-2 flex justify-center">
           <div
             className="transform transition-all duration-1000 hover:scale-105"
             style={{
-              transform: `perspective(1000px) rotateY(${mousePos.x * 5}deg) rotateX(${mousePos.y * -5}deg)`,
+              transform: `perspective(1000px) rotateY(${
+                mousePos.x * 5
+              }deg) rotateX(${mousePos.y * -5}deg)`,
             }}
           >
             {renderVisual()}
           </div>
         </div>
       </div>
+
+      {/* Bottom-right tip */}
+      {/* {showTip && (
+        <div className="fixed bottom-6 right-6 bg-gray-800 text-white text-xs px-4 py-2 rounded-lg shadow-lg animate-fadeInOut z-50">
+           Pro coder tip: PC + Dark Mode on.
+        </div>
+      )} */}
     </section>
   );
 };

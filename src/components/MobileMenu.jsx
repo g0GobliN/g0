@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AnimatedThemeToggle from "./AnimatedThemeToggle";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 
 const MobileMenu = ({
   isOpen,
@@ -21,11 +21,12 @@ const MobileMenu = ({
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 
-  // Your actual article data (simplified example)
+  // my actual article data (simplified example)
   const actualArticle = {
     date: "2025-04-21",
     title: "Hello World...",
-    description: "A look into how I built my 2025 portfolio — from choosing React....",
+    description:
+      "A look into how I built my 2025 portfolio — from choosing React....",
     readTime: "8 min read",
     path: "/articles/hello-world",
   };
@@ -141,7 +142,7 @@ const MobileMenu = ({
           </div>
         </div>
 
-         {/* Social icons + theme toggle */}
+        {/* Social icons + theme toggle */}
         <div className="p-6 flex justify-between items-center border-t border-gray-200 dark:border-gray-700">
           <div className="flex gap-4">
             <a
@@ -200,6 +201,27 @@ const MobileMenu = ({
                 />
               </svg>
             </a>
+            {/* PDF Download Button */}
+               {/* <button
+                onClick={() =>
+                  window.open(
+                    "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
+                    "_blank"
+                  )
+                }
+                className="flex items-center justify-center rounded-full
+             text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
+             transition-colors"
+                title="View PDF Online"
+              > */}
+                {/* Light mode icon (dark icon) */}
+                {/* <img
+                  src="/assets/images/octopus.svg"
+                  alt="View PDF"
+                  className="block dark:hidden w-7 h-8 "
+                  style={{ width: "30px", height: "32px", }}
+                />
+              </button> */}
           </div>
 
           <AnimatedThemeToggle isDark={isDark} onToggle={onThemeToggle} />
