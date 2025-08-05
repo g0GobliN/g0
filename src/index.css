@@ -8,6 +8,21 @@
   box-sizing: border-box;
 }
 
+html, body {
+  background-color: white; /* default light background */
+  transition: background-color 0.3s ease;
+}
+
+html.dark, body.dark {
+  background-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.dark), body:not(.dark) {
+    background-color: black;
+  }
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     sans-serif;

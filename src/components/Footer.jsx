@@ -309,13 +309,12 @@ const Footer = () => {
              text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
              transition-colors"
                 title="View PDF Online"
-              > */}
-                {/* Light mode icon (dark icon) */}
-                {/* <img
-                  src="/assets/images/octopus.svg"
+              >
+                <img
+                  src="/assets/images/magical.png"
                   alt="View PDF"
                   className="block dark:hidden"
-                  style={{ width: "32px", height: "32px" }}
+                  style={{ width: "28px", height: "28px" }}
                 />
               </button> */}
             </div>

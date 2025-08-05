@@ -23,7 +23,7 @@ export default function LogoSplash({ onAnimationEnd }) {
     <div
       className={`
         fixed inset-0 flex flex-col items-center justify-center
-        bg-slate-50 dark:bg-slate-900 z-50
+        bg-slate-50 dark:bg-black z-50
         transition-opacity duration-500
         ${animationStep === 4 ? "opacity-0" : "opacity-100"}
       `}

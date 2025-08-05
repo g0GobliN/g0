@@ -45,23 +45,20 @@ export default function ModernPortfolio() {
   const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setIsDarkMode(prefersDark);
-    }
-  }, []);
+const [isDarkMode, setIsDarkMode] = useState(() => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    return savedTheme === "dark";
+  }
+  // default to dark if nothing saved
+  localStorage.setItem("theme", "dark");
+  return true;
+});
 
   useEffect(() => {
     if (isDarkMode) {
@@ -118,7 +115,7 @@ export default function ModernPortfolio() {
   return (
     <div
       className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
-        isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-900"
+        isDarkMode ? "dark bg-black text-white" : "bg-white text-gray-900"
       }`}
     >
       <CursorFollower />

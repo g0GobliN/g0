@@ -201,27 +201,6 @@ const MobileMenu = ({
                 />
               </svg>
             </a>
-            {/* PDF Download Button */}
-               {/* <button
-                onClick={() =>
-                  window.open(
-                    "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
-                    "_blank"
-                  )
-                }
-                className="flex items-center justify-center rounded-full
-             text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
-             transition-colors"
-                title="View PDF Online"
-              > */}
-                {/* Light mode icon (dark icon) */}
-                {/* <img
-                  src="/assets/images/octopus.svg"
-                  alt="View PDF"
-                  className="block dark:hidden w-7 h-8 "
-                  style={{ width: "30px", height: "32px", }}
-                />
-              </button> */}
           </div>
 
           <AnimatedThemeToggle isDark={isDark} onToggle={onThemeToggle} />

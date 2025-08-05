@@ -136,25 +136,58 @@ const AboutSection = () => {
               </TextReveal>
 
               <TextReveal delay={500}>
-                <button
-                  onClick={handleSendMessageClick}
-                  className="
-                    inline-flex items-center space-x-1.5
-                    bg-gray-800 dark:bg-cyan-400
-                    text-white dark:text-black
-                    px-3 py-1.5
-                    rounded-md
-                    text-[11px]
-                    font-gotham
-                    hover:bg-gray-600 dark:hover:bg-cyan-300
-                    transition-colors duration-300
-                    max-w-max
-                  "
-                >
-                  <span>Send message</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </TextReveal>
+  <div className="flex items-center space-x-3">
+    {/* Send Message Button */}
+    <button
+      onClick={handleSendMessageClick}
+      className="
+        inline-flex items-center space-x-1.5
+        bg-gray-800 dark:bg-cyan-400
+        text-white dark:text-black
+        px-3 py-1.5
+        rounded-md
+        text-[11px]
+        font-gotham
+        hover:bg-gray-600 dark:hover:bg-cyan-300
+        transition-colors duration-300
+        max-w-max
+      "
+    >
+      <span>Send message</span>
+      <ArrowRight className="w-4 h-4" />
+    </button>
+
+    {/* PDF Button */}
+    <button
+      onClick={() =>
+        window.open(
+          "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
+          "_blank"
+        )
+      }
+      className="flex items-center justify-center rounded-full
+        text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
+        transition-colors"
+      title="View PDF Online"
+    >
+      <img
+  src="/assets/images/magical.png"
+  alt="View PDF"
+  className="block"
+  style={{
+    width: "28px",
+    height: "28px",
+    transform: "scale(1)",          // correct way to scale
+    transition: "transform 0.3s",   // smooth animation on hover
+  }}
+/>
+
+    </button>
+  </div>
+</TextReveal>
+
+
+              
             </div>
           </div>
 
@@ -169,6 +202,7 @@ const AboutSection = () => {
             >
               <SkillsGrid />
             </div>
+            
           </TextReveal>
         </div>
       </section>
