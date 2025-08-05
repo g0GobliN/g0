@@ -139,13 +139,12 @@ html {
   }
 }
 
-/* @keyframes fadeInOut {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
+.underline-cyan-400{
+  text-decoration: underline;
+  text-decoration-color: transparent;
 }
 
-.animate-fadeInOut {
-  animation: fadeInOut 4s ease-in-out forwards;
-} */
+.dark .underline-cyan-400 {
+  text-decoration-color: cyan;
+}
+

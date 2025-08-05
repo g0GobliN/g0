@@ -200,7 +200,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
   return (
     <section
       id="home"
-      className=" min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300
+      className="min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-300
                  bg-gray-50 text-gray-900 
                  dark:bg-black dark:text-white"
     >
