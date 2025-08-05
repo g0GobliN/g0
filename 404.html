@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-<link rel="icon" type="image/webp" href="/assets/images/goblin.webp">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishal Gurung | Goblin Magic in Code</title>
+  <link rel="icon" type="image/webp" href="/assets/images/goblin.webp">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Gurung | Goblin Magic in Code</title>
 
-  <script type="module" crossorigin src="/assets/index-BF_JHdDj.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CRBn_uMw.css">
+  <!-- Force dark mode before React loads -->
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark" || !savedTheme) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    })();
+  </script>
+  
+  <script type="module" crossorigin src="/assets/index-DzmyryYi.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BbI38Jhb.css">
 </head>
 <body>
-<div id="root"></div>
+  <div id="root"></div>
+  <!-- Load React bundle -->
 </body>
 </html>
