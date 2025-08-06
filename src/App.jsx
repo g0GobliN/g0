@@ -15,6 +15,7 @@ import ContactSection from "./sections/ContactSection";
 import ArticleSection from "./sections/ArticleSection";
 
 import HelloWorld from "./data/HelloWorld";
+import { div } from "framer-motion/client";
 
 function MainPage({ scrollY, onSectionChange }) {
   const location = useLocation();
@@ -42,6 +43,7 @@ function MainPage({ scrollY, onSectionChange }) {
 
 export default function ModernPortfolio() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
@@ -113,11 +115,7 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
   }
 
   return (
-    <div
-      className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
-        isDarkMode ? "dark bg-black text-white" : "bg-white text-gray-900"
-      }`}
-    >
+    <div className={`transition-colors duration-300 ${isDarkMode ? "dark bg-black text-white" : "bg-white text-gray-900"}`}>
       <CursorFollower />
       <Navigation
         isDark={isDarkMode}
@@ -134,7 +132,7 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/articles" element={<ArticleSection />} />
         <Route path="/articles/hello-world" element={<HelloWorld />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage onNavigateHome={() => navigate("/")} />} />
       </Routes>
       <Footer />
     </div>
