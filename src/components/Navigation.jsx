@@ -4,7 +4,7 @@ import MobileMenu from "./MobileMenu";
 import AnimatedThemeToggle from "./AnimatedThemeToggle";
 import goblinLogo from "/assets/images/goblin.webp";
 
-const Navigation = ({ isDark, onThemeToggle }) => {
+const Navigation = ({ isDark, onThemeToggle, onSectionChange, activeSection }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
   const navigate = useNavigate();
@@ -18,80 +18,36 @@ const Navigation = ({ isDark, onThemeToggle }) => {
     { id: "contact", label: "Contact", path: "/contact" },
   ];
 
-  // Detect if we're on a route (articles/contact)
+  // Sync activeItem with scroll tracking (from parent)
+  useEffect(() => {
+    if (activeSection) {
+      setActiveItem(activeSection);
+    }
+  }, [activeSection]);
+
+  // Detect if we're on a route like /articles or /contact
   useEffect(() => {
     const routeMatch = navItems.find((item) => item.path === location.pathname);
     if (routeMatch) {
       setActiveItem(routeMatch.id);
-    }
-  }, [location.pathname]);
-
-  // Scroll tracking (only homepage sections)
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      return; // ❌ Disable scroll tracking on non-home pages
-    }
-
-    const sections = navItems
-      .filter((item) => !item.path) // only in-page sections
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean);
-
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveItem(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-40% 0px -40% 0px", // trigger near middle
-        threshold: 0,
+    } else if (location.pathname === "/") {
+      // When on home page, use the activeSection from scroll tracking
+      if (activeSection) {
+        setActiveItem(activeSection);
       }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
-  }, [location.pathname]);
-
-  const scrollToSectionWithOffset = (id, offset = 80) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
-    const scrollPosition = elementPosition - offset;
-    window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-  };
+    }
+  }, [location.pathname, activeSection]);
 
   const handleLogoClick = (e) => {
     e.preventDefault();
-    if (location.pathname === "/") {
-      scrollToSectionWithOffset("home", 80);
-      setActiveItem("home");
-    } else {
-      navigate("/");
-      setActiveItem("home");
-    }
+    setIsMobileMenuOpen(false);
+    onSectionChange("home"); // delegate to parent
   };
 
   const handleSectionClick = (id) => {
     setIsMobileMenuOpen(false);
-    setActiveItem(id);
-
-    if (location.pathname === "/") {
-      scrollToSectionWithOffset(id, 80);
-    } else {
-      navigate("/");
-      setTimeout(() => {
-        scrollToSectionWithOffset(id, 80);
-      }, 150);
-    }
+    setActiveItem(id); // Set active item immediately for better UX
+    onSectionChange(id); // delegate to parent
   };
 
   const handleLinkClick = (id, path) => {

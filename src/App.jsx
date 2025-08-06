@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ErrorPage from "./components/ErrorPage";
-import LogoSplash from "./components/logoSplash"; 
+import LogoSplash from "./components/logoSplash";
 
 import HomeSection from "./sections/HomeSection";
 import AboutSection from "./sections/AboutSection";
@@ -15,7 +15,6 @@ import ContactSection from "./sections/ContactSection";
 import ArticleSection from "./sections/ArticleSection";
 
 import HelloWorld from "./data/HelloWorld";
-import { div } from "framer-motion/client";
 
 function MainPage({ scrollY, onSectionChange }) {
   const location = useLocation();
@@ -34,7 +33,11 @@ function MainPage({ scrollY, onSectionChange }) {
 
   return (
     <>
-      <HomeSection scrollY={scrollY} id="home" onSectionChange={onSectionChange} />
+      <HomeSection
+        scrollY={scrollY}
+        id="home"
+        onSectionChange={onSectionChange}
+      />
       <AboutSection id="about" />
       <ProjectSection id="project" />
     </>
@@ -48,19 +51,21 @@ export default function ModernPortfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
 
+  const [pendingSection, setPendingSection] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-const [isDarkMode, setIsDarkMode] = useState(() => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    return savedTheme === "dark";
-  }
-  // default to dark if nothing saved
-  localStorage.setItem("theme", "dark");
-  return true;
-});
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+    // default to dark if nothing saved
+    localStorage.setItem("theme", "dark");
+    return true;
+  });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -101,12 +106,27 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
     if (sectionId === "contact") {
       navigate("/contact");
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      if (location.pathname !== "/") {
+        setPendingSection(sectionId);
+        navigate("/");
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
   };
+
+  useEffect(() => {
+    if (pendingSection && location.pathname === "/") {
+      const element = document.getElementById(pendingSection);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setPendingSection(null);
+      }
+    }
+  }, [location.pathname, pendingSection]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
@@ -115,7 +135,13 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
   }
 
   return (
-    <div className={`transition-colors duration-300 ${isDarkMode ? "dark bg-black text-white" : "bg-white text-gray-900"}`}>
+    <div
+      className={`transition-colors duration-300 ${
+        isDarkMode
+          ? "dark bg-black text-white"
+          : "bg-white text-gray-900"
+      }`}
+    >
       <CursorFollower />
       <Navigation
         isDark={isDarkMode}
@@ -127,12 +153,20 @@ const [isDarkMode, setIsDarkMode] = useState(() => {
       <Routes>
         <Route
           path="/"
-          element={<MainPage scrollY={scrollY} onSectionChange={handleSectionChange} />}
+          element={
+            <MainPage
+              scrollY={scrollY}
+              onSectionChange={handleSectionChange}
+            />
+          }
         />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/articles" element={<ArticleSection />} />
         <Route path="/articles/hello-world" element={<HelloWorld />} />
-        <Route path="*" element={<ErrorPage onNavigateHome={() => navigate("/")} />} />
+        <Route
+          path="*"
+          element={<ErrorPage onNavigateHome={() => navigate("/")} />}
+        />
       </Routes>
       <Footer />
     </div>

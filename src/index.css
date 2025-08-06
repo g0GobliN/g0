@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FORCE SINGLE SCROLLBAR - Nuclear approach */
+/* FORCE SINGLE SCROLLBAR - Fixed approach */
 * {
   margin: 0;
   padding: 0;
@@ -11,14 +11,14 @@
 
 html {
   overflow-x: hidden !important;
-  overflow-y: hidden !important;
+  /* REMOVED: overflow-y: hidden !important; */
   height: 100% !important;
   scroll-behavior: smooth !important;
 }
 
 body {
   overflow-x: hidden !important;
-  overflow-y: hidden !important;
+  /* REMOVED: overflow-y: hidden !important; */
   height: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -37,7 +37,7 @@ html.dark body {
   }
 }
 
-/* Only #root gets to scroll */
+/* Only #root gets to scroll - Updated to allow scrolling */
 #root {
   width: 100% !important;
   height: 100vh !important;
@@ -53,8 +53,6 @@ div[class*="h-screen"] {
   height: auto !important;
   min-height: auto !important;
 }
-
-
 
 /* Font faces */
 @font-face {
