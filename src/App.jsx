@@ -53,9 +53,6 @@ export default function ModernPortfolio() {
 
   const [pendingSection, setPendingSection] = useState(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
