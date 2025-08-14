@@ -207,7 +207,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
                  transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <div className="flex flex-col md:flex-row md:items-start lg:items-center md:space-x-36 justify-center">
+        <div className="flex flex-col sm:flex-row md:items-start lg:items-center md:space-x-36 justify-center">
           {/* Left Column - Visual */}
           <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center md:justify-start lg:justify-center">
             <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
