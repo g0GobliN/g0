@@ -2173,7 +2173,7 @@ This typically indicates that your device does not have a healthy Internet conne
               mx-auto 
               md:max-w-md 
               mt-12 
-              md:mt-16 
+              md:mt-24
               text-left 
               px-4 
               md:px-0 
