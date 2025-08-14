@@ -171,7 +171,7 @@ const AboutSection = () => {
                     title="View PDF Online"
                   >
                     <img
-                      src="public/assets/images/scroll.png"
+                      src="/assets/images/scroll.png"
                       alt="View PDF"
                       className="block"
                       style={{
