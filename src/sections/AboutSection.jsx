@@ -177,8 +177,8 @@ const AboutSection = () => {
                       style={{
                         width: "28px",
                         height: "28px",
-                        transform: "scale(1)", // correct way to scale
-                        transition: "transform 0.3s", // smooth animation on hover
+                        transform: "scale(1)", 
+                        transition: "transform 0.3s", 
                       }}
                     />
                   </button>
