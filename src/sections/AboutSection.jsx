@@ -167,11 +167,11 @@ const AboutSection = () => {
                     }
                     className="flex items-center justify-center rounded-full
                     text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
-                    transition-colors"
+                    transition-colors mt-0.5"
                     title="View PDF Online"
                   >
                     <img
-                      src="/assets/images/magical.png"
+                      src="public/assets/images/scroll.png"
                       alt="View PDF"
                       className="block"
                       style={{
