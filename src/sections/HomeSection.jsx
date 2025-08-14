@@ -264,7 +264,7 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
               mx-auto 
               md:max-w-md 
               mt-12 
-              md:mt-16 
+              md:mt-24
               text-left 
               px-4 
               md:px-0 
