@@ -306,11 +306,12 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
                     inline-flex items-center space-x-2
                     bg-gray-800 dark:bg-cyan-400
                     text-white dark:text-black
-                    px-6 lg:px-8 py-2 lg:py-3
+                    px-5 xxs:px-8 lg:px-14 py-2 lg:py-3
                     rounded-lg
-                    text-sm
+                    text-xs sm:text-sm
                     font-gotham
                     hover:bg-gray-600 dark:hover:bg-cyan-300
+                    whitespace-nowrap
                     transition-all duration-300
                     transform hover:scale-105
                   "
@@ -325,11 +326,12 @@ const HomeSection = ({ scrollY, onSectionChange }) => {
                     inline-flex items-center space-x-2
                     border-2 border-gray-400 dark:border-gray-600
                     text-gray-700 dark:text-gray-300
-                    px-6 lg:px-14 py-2 lg:py-3
+                    px-5 xxs:px-8 lg:px-14 py-2 lg:py-3
                     rounded-lg
-                    text-sm
+                    text-xs sm:text-sm
                     font-gotham
                     hover:border-black dark:hover:border-white 
+                    whitespace-nowrap
                     hover:text-black dark:hover:text-white
                     transition-all duration-300
                     transform hover:scale-105

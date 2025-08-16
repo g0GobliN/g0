@@ -14,6 +14,7 @@ module.exports = {
         "ipa-gothic": ["IPAGothic", "sans-serif"],
       },
       screens: {
+        xxs: "406px",
         xs: "670px",
         mid: "844px",
       },
