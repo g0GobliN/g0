@@ -1,7 +1,7 @@
 {
   "name": "g0",
   "private": true,
-  "version": "4.4.0",
+  "version": "5.0.0",
   "type": "module",
   "homepage": "https://g0goblin.github.io/g0/",
   "scripts": {
