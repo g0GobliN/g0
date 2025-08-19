@@ -3,10 +3,10 @@
   "private": true,
   "version": "4.4.0",
   "type": "module",
-  "homepage": "https://g0.monster",
+  "homepage": "https://g0goblin.github.io/g0/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html && cp CNAME dist/",
+    "build": "vite build && cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
