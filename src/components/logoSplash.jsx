@@ -30,7 +30,7 @@ export default function LogoSplash({ onAnimationEnd }) {
     >
       {/* Logo */}
       <img
-        src="/assets/images/goblin.webp"
+        src="./assets/images/goblin.webp"
         alt="Logo"
         className={`
           relative z-10

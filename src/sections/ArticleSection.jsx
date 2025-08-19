@@ -104,7 +104,7 @@ const ArticleSection = () => {
           <div className="relative overflow-hidden rounded-none border-y border-gray-200 dark:border-gray-700 min-h-[calc(100vh-10rem)]">
             {/* Background Image */}
             <img
-              src="/assets/gif/background6.gif"
+              src="./assets/gif/background6.gif"
               alt="Featured article background"
               className="absolute inset-0 w-full h-full object-cover"
             />

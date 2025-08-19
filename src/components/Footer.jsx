@@ -301,7 +301,7 @@ const Footer = () => {
               {/* <button
                 onClick={() =>
                   window.open(
-                    "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
+                    "./assets/Vishal_Gurung_Portfolio_Resume.pdf",
                     "_blank"
                   )
                 }
@@ -311,7 +311,7 @@ const Footer = () => {
                 title="View PDF Online"
               >
                 <img
-                  src="/assets/images/magical.png"
+                  src="./assets/images/magical.png"
                   alt="View PDF"
                   className="block dark:hidden"
                   style={{ width: "28px", height: "28px" }}

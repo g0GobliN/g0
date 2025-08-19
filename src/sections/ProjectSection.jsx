@@ -65,7 +65,7 @@ const ProjectsSection = () => {
       description:
         "Interactive web application that fetches and displays random dog images using REST API integration",
       type: "dog-api",
-      gifUrl: "/assets/gif/dog.gif",
+      gifUrl: "./assets/gif/dog.gif",
       url: "/dog-demo.html",
     },
     {
@@ -73,7 +73,7 @@ const ProjectsSection = () => {
       description:
         "Modern and fully responsive portfolio website showcasing projects with clean design and smooth animations",
       type: "portfolio",
-      gifUrl: "/assets/gif/portfolio.gif",
+      gifUrl: "./assets/gif/portfolio.gif",
       url: "https://github.com/g0GobliN/g0",
     },
   ];

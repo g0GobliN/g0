@@ -15,7 +15,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       id: 1,
       name: "Oops I Did It Again",
       tracks: 24,
-      audioSrc: "/assets/music/Oops I Did It Again.mp3",
+      audioSrc: "./assets/music/Oops I Did It Again.mp3",
       meaning:
         "Just like this page — you tried, failed, and landed back at square one. Welcome to the error zone.",
     },
@@ -23,7 +23,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       id: 2,
       name: "Dumb Ways to Die",
       tracks: 18,
-      audioSrc: "/assets/music/Dumb Ways to Die.mp3",
+      audioSrc: "./assets/music/Dumb Ways to Die.mp3",
       meaning:
         "Your navigation skills are questionable. Keep clicking and you'll find even dumber ways to get lost.",
     },
@@ -32,7 +32,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       name: "Another One Bites The Dust",
       tracks: 32,
       audioSrc:
-        "/assets/music/Another One Bites The Dust (Remastered 2011).mp3",
+        "./assets/music/Another One Bites The Dust (Remastered 2011).mp3",
       meaning:
         "Every wrong click adds to the pile of lost visitors. RIP your browsing hopes.",
     },
@@ -40,7 +40,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       id: 4,
       name: "Nobody's Home",
       tracks: 15,
-      audioSrc: "/assets/music/Nobody's Home.mp3",
+      audioSrc: "./assets/music/Nobody's Home.mp3",
       meaning:
         "404 means nobody's home — just like this page, empty and abandoned. Try not to get too comfy.",
     },
@@ -48,7 +48,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       id: 5,
       name: "Good Luck",
       tracks: 28,
-      audioSrc: "/assets/music/Good Luck.mp3",
+      audioSrc: "./assets/music/Good Luck.mp3",
       meaning:
         "You're gonna need it finding your way back from this digital wasteland. May the odds be ever in your favor.",
     },
@@ -139,7 +139,7 @@ const ErrorPage = ({ onNavigateHome }) => {
       {/* Background GIF */}
       <div className="absolute inset-0 hidden dark:block">
         <img
-          src="/assets/gif/background7.gif"
+          src="./assets/gif/background7.gif"
           alt="background gif"
           className="w-full h-full object-none scale-125"
         />

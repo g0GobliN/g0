@@ -47,7 +47,7 @@ export default function HelloWorld() {
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
                 <img
-                  src="/assets/gif/background6.gif"
+                  src="./assets/gif/background6.gif"
                   alt="React + Tailwind Demo"
                   className="w-full h-auto object-contain block border-4 scale-105  [@media(min-width:539px)_and_(max-width:1023px)]:translate-y-[-40px] lg:-translate-y-[80px] transition-transform duration-500"
                 />
@@ -75,7 +75,7 @@ export default function HelloWorld() {
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
                 <img
-                  src="/assets/articleImage/reactTailwind.png"
+                  src="./assets/articleImage/reactTailwind.png"
                   alt="React + Tailwind Demo"
                   className="w-full h-auto object-contain block border-4 scale-105"
                 />
@@ -104,7 +104,7 @@ export default function HelloWorld() {
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
                 <img
-                  src="/assets/gif/portfolio.gif"
+                  src="./assets/gif/portfolio.gif"
                   alt="Dark/light image"
                   className="w-full h-auto object-contain block border-4 scale-[1.35] sm:scale-105  transition-transform duration-500"
                 />
@@ -138,7 +138,7 @@ export default function HelloWorld() {
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
                  <img
-                  src="/assets/articleImage/error.png"
+                  src="./assets/articleImage/error.png"
                   alt="Dark/light image"
                   className="w-full h-auto object-contain block border-4 scale-[1.35] sm:scale-105  transition-transform duration-500"
                 />
@@ -214,7 +214,7 @@ export default function HelloWorld() {
             <div className="mb-8 overflow-hidden rounded-xl shadow-lg bg-gray-200 dark:bg-gray-800">
               <div className="w-full h-48 flex items-center justify-center">
                 <img
-                  src="/assets/articleImage/thoughts.jpg"
+                  src="./assets/articleImage/thoughts.jpg"
                   alt="Dark/light image"
                   className="w-full h-auto object-contain block border-4 scale-105"
                 />

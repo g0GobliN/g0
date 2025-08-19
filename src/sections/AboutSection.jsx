@@ -46,7 +46,7 @@ const AboutSection = () => {
               >
                 <div className="relative rounded-xl aspect-[4/5] max-w-xs">
                   <img
-                    src="/assets/images/IMG_4027.jpeg"
+                    src="./assets/images/IMG_4027.jpeg"
                     alt="Vishal Gurung"
                     className="w-full h-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
                     style={{ transform: "translateY(12px) scale(0.95)" }}
@@ -161,7 +161,7 @@ const AboutSection = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        "/assets/Vishal_Gurung_Portfolio_Resume.pdf",
+                        "./assets/Vishal_Gurung_Portfolio_Resume.pdf",
                         "_blank"
                       )
                     }
@@ -171,7 +171,7 @@ const AboutSection = () => {
                     title="View PDF Online"
                   >
                     <img
-                      src="/assets/images/scroll.png"
+                      src="./assets/images/scroll.png"
                       alt="View PDF"
                       className="block"
                       style={{
@@ -213,7 +213,7 @@ const AboutSection = () => {
         >
           <div className="relative">
             <img
-              src="/assets/images/IMG_4027.jpeg"
+              src="./assets/images/IMG_4027.jpeg"
               alt="Vishal Gurung"
               id="modal-title"
               className="rounded-lg shadow-lg block"
